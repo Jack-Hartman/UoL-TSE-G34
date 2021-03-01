@@ -1,6 +1,4 @@
-console.log('Hello World'); 
-
-// Simple Get Request.
+// Simple Get Request function.
 helloRequst = (theURL) => {
     console.log('Hello World 02'); 
     var xmlHttp = new XMLHttpRequest();
@@ -11,5 +9,5 @@ helloRequst = (theURL) => {
     return xmlHttp.responseText; 
 }
 
-helloRequst('http://localhost:5000')
+helloRequst('http://localhost:5000'); // Call the request.
 
