@@ -1,0 +1,10 @@
+body {
+    background-color: black;
+}
+
+.card {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
