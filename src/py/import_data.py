@@ -14,6 +14,8 @@ class Import:
         del dt ['Deaths - newly reported in last 7 days']
         #  dt.columns = []
 
+        
+
         # Prints top five rows of table
         print(dt.head(5))
 
