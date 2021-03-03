@@ -1,10 +1,13 @@
 #Imports
-from flask import Flask
-from flask_cors import CORS
-import Import_data
-import User_Interact
+import import_data
+import user_interact
+
 import numpy as np
 import pandas as pd
+
+from flask import Flask
+from flask_cors import CORS
+
 
 # Create Flask App
 app = Flask(__name__)
@@ -23,8 +26,10 @@ today = pd.to_datetime("today")
 # Getting date of 7 days ago?
 
 print(today)
-Import_data.Import.Read_File()
-User_Interact.Input.Selection()
+
+import_data.WHO_Data_Set.Read_File()
+import_data.WHO_Data_Set.Test_Graph()
+user_interact.Input.Selection()
 
 
 #Run the app.s
