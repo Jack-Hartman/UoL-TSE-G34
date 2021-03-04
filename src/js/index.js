@@ -9,5 +9,5 @@ helloRequst = (theURL) => {
     return xmlHttp.responseText; 
 }
 
-helloRequst('http://localhost:5000'); // Call the request.
+helloRequst('http://95.111.246.85:5000'); // Call the request.
 
