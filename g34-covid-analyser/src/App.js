@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { Label } from './Components/Label';
+import { Card } from './Components/Card/Card';
 
 function App() {
   return (
@@ -19,8 +20,13 @@ function App() {
           Learn React
         </a>
       </header> */}
-      <Label />
-     
+      <div className='container'>
+        <div className='row'>
+          <Card />
+          <Card />
+          <Card />
+        </div>
+      </div>
     </div>
   );
 }
