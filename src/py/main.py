@@ -17,4 +17,5 @@ def hello():
 
 #Run the app.s
 if __name__ == '__main__':
-    app.run(host='95.111.246.85', debug=True)
+    context = ('/var/www/api/keys/fullchain.pem', '/var/www/api/keys/key.pem')
+    app.run(ssl_context=context, host='api.publiczeus.com', debug=True)
