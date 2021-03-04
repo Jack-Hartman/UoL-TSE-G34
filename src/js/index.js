@@ -9,5 +9,5 @@ helloRequst = (theURL) => {
     return xmlHttp.responseText; 
 }
 
-helloRequst('http://95.111.246.85:5000'); // Call the request.
+helloRequst('https://api.publiczeus.com:5000/'); // Call the request.
 
