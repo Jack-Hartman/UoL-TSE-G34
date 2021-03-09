@@ -16,10 +16,10 @@ class UserInput:
 	def Checker(self):
 	#Create array that stores country names we are using then compare that with user input to see if you can find the data.
 	   
-		All_Countries = [] 
-		All_Countries.append(import_data.dt["Name"])
-		print(type(import_data.dt["Name"]))
-		
+		All_Countries = []
+		All_Countries.append(import_data.dt["Name"].values)
+		#print(type(import_data.dt["Name"]))
+
 		tester = self.Country 
 		print(tester)
 		#for 
@@ -28,7 +28,7 @@ class UserInput:
 		count = 0
 		while count < len(import_data.dt["Name"]):
 			if tester in All_Countries[count]: 
-				print(woo)
+				print("woo")
 				quit()
 			else: 
 				print("Sorry you have entered an invalid country name")
