@@ -1,6 +1,7 @@
 #Imports
 import import_data
 import user_interact
+import example_graphs
 
 import numpy as np
 import pandas as pd
@@ -16,7 +17,7 @@ CORS(app)
 #Routing
 @app.route('/')
 def hello():
-    return 'hello lincoln group work'
+	return 'hello lincoln group work'
 
 # /help command
 
@@ -27,11 +28,15 @@ today = pd.to_datetime("today")
 
 print(today)
 
-import_data.WHO_Data_Set.Read_File()
-import_data.WHO_Data_Set.Test_Graph()
-user_interact.Input.Selection()
+import_data.WHO_Data_Set()
+#import_data.WHO_Data_Set.Test_Graph()
+O1 = user_interact.UserInput()
+O1.Checker()
+
+#example_graphs.Test_Graph()
+
 
 
 #Run the app.s
 if __name__ == '__main__':
-    app.run(host='localhost', debug=True)
+	app.run(host='localhost', debug=True)
