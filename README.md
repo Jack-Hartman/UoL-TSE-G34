@@ -25,9 +25,6 @@ Then go to the g34-covid-analyser folder
 
 Then run 'npm install'
 
-React (For UI)
-victory (for charts)
-Grommet (For UI Components)
 
 ## Back End:
 
