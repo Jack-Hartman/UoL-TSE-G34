@@ -1,6 +1,8 @@
 #Imports
 import import_data
-import user_interact
+import User_Interact as user_interact
+
+import example_graphs
 
 import numpy as np
 import pandas as pd
@@ -27,11 +29,11 @@ today = pd.to_datetime("today")
 
 print(today)
 
-import_data.WHO_Data_Set.Read_File()
-import_data.WHO_Data_Set.Test_Graph()
+import_data.WHO_Data_Set()
+example_graphs.plotData()
 user_interact.Input.Selection()
 
 
 #Run the app.s
-if __name__ == '__main__':
-    app.run(host='localhost', debug=True)
+#if __name__ == '__main__':
+#    app.run(host='localhost', debug=True)

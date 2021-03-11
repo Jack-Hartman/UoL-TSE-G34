@@ -16,6 +16,7 @@ class Input:
 
         #if Userinput in Country_names:
             # Search for the inputed countrys data in the dataframe
+        return Userinput
 
 
 

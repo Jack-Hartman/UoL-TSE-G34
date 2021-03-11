@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 
 class WHO_Data_Set:
-    def Read_File():
+    def __init__(self):
         global dt
         #Reading WHO data-set
         #series
