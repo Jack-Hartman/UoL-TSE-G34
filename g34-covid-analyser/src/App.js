@@ -1,10 +1,27 @@
+/*
+	- Add bootstrap
+	- Rewrite algorithm to dynamically render the graphs.
+	- Rewrite the drag and drop algorithm to accomodate the Bootstrap grid system.
+*/
+
+// Import CSS
 import './App.css'; // Import styings for the application.
-import { Grommet, Box, Button, Heading, Grid, Text, ResponsiveContext, Sidebar, Nav } from "grommet"; // Import UI components.
+import 'bootstrap/dist/css/bootstrap.min.css'; // Import the bootstrap styles.
+import { Grommet, Box, Button, Heading, Grid, Text, ResponsiveContext, Sidebar } from "grommet"; // Import UI components.
 import { grommet } from 'grommet/themes'; // Import grommet themes.
 import React, { useContext, useState, useRef } from 'react'; // Import react.
+
+// Import My Components.
 import Graph from './Components/Graphs/Graph';
 import { DndGrid } from './Components/DndGrid';
-import DataGripCard from './Components/Card/Card'; // Import Card for the graphs.  
+import DataGripCard from './Components/Card/Card'; // Import Card for the graphs.
+
+// Import Bootstrap Components (Import each component ont at a time to save space).
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const data = { // Example data for the graphs.
 	items: ['1', '2', '3', '4', '5', '6'] // Create a grid like object/array to better initiate the dragging functionality.
@@ -12,8 +29,8 @@ const data = { // Example data for the graphs.
 
 function App() {
 
-  	const [sidebar, setSidebar] = useState(true);
-	const size = useContext(ResponsiveContext); 
+  	//const [sidebar, setSidebar] = useState(true);
+	//const size = useContext(ResponsiveContext); 
 
 	const [list, setList] = useState(data); // Create states for list.
 	const [dragging, setDragging] = useState(false); // Create statets for dragging.
@@ -62,100 +79,56 @@ function App() {
 	}
 	
 	return (
-		<Grommet> 
-			<Grid fill rows={['auto', 'flex']} columns={['auto', 'flex']} areas={[
-				{name : 'header', start: [0, 0], end: [1, 0]},
-				{name : 'sidebar', start: [0, 1], end: [0, 1]},
-				{name: 'main', start: [1, 1], end: [1, 1]},
-			]}>
-				<Box
-					gridArea="header"
-					direction="row"
-					align="center"
-					justify="between"
-					pad={{ horizontal: 'medium', vertical: 'small' }}
-					background="dark-2"
-				>
-					<Button onClick={() => setSidebar(!sidebar)}>
-						<Text size='large'>Data Grip</Text>
-					</Button>
-					<Text>my@email</Text>
-				</Box>
-		{ sidebar && (
-				<Box
-					gridArea='sidebar'
-					background='light'
-					width='small'
-					alignContent='center'
-					pad='medium'
-					animation={[
-						{type: 'fadeIn', duration: 300},
-						{type: 'slideRight', size: 'xlarge', duration: 150}]}
-				>
-					{/* {['First', 'Second', 'Third'].map(name => (
-						<Button key={name} href='' hoverIndicator>
-							<Box pad={{ horizontal: 'medium', vertical: 'small'}}>
-								<Text>{name}</Text>
-							</Box>
-						</Button>
-					))} */}
-					<Box align='center'>
-						<Sidebar alignself='center' background="brand" round="small" width='90%' height='90%'
-							header={
-								<h1>Home</h1>
-							}
-							footer={
-								<h2>Exit</h2>
-							}
-							>
-							<Nav gap="small">
-								<Button hoverIndicator>Create</Button>
-								<Button hoverIndicator>Delete</Button>
-								<Button hoverIndicator>Help</Button>				
-							</Nav>
-						</Sidebar>
-					</Box>
-				</Box>
-			)}
-				<Box gridArea='main' justify='center' align='center'>
-					<Box pad='small'>
-
-						{/*
-							Drag Start: set current item being dragged
-							Init draged listener
-							stle dragges card
-							init dragenter listeners
+		<>
+			<Navbar bg="dark" variant="dark">
+				<Navbar.Brand>Hello</Navbar.Brand>
+				<Nav className="mr-auto">
+					<Nav.Link href="#home">Create</Nav.Link>
+					<Nav.Link href="#features">Manage</Nav.Link>
+					<Nav.Link href="#pricing">Help</Nav.Link>
+				</Nav>
+			</Navbar>
+			
 
 
-							Drag Enter
-							Set target item if not itself-
-							Handle no item case push to group
-							re-order state
-
-							Drag end
-							Clean up current item remove drop end listener
-						*/}
-						
-						<Grid columns={['medium', 'medium', 'medium']}>
-							{
-								list.items.map((i, i1) => (
-									<div className={dragging?getStyles():"dndItem"} draggable onDragStart={(e) => {
-										handleDragStart(e, i1)
-									}} 
-									onDragEnter={dragging?(e) => {
-										handleDragEnter(e, i1)
-									} : null}>
-										<DataGripCard name={i} />
-									</div>
-								))
-							}
-						</Grid>
 
 
-					</Box>
-				</Box>
-			</Grid>
-		</Grommet>
+
+			{/*
+				Drag Start: set current item being dragged
+				Init draged listener
+				stle dragges card
+				init dragenter listeners
+
+
+				Drag Enter
+				Set target item if not itself-
+				Handle no item case push to group
+				re-order state
+
+				Drag end
+				Clean up current item remove drop end listener
+			*/}
+			<Container>
+				<Row>
+					{
+						list.items.map((i, i1) => (
+							<div className={dragging?getStyles():"dndItem"} draggable onDragStart={(e) => {
+								handleDragStart(e, i1)
+							}} 
+							onDragEnter={dragging?(e) => {
+								handleDragEnter(e, i1)
+							} : null}>
+								<Col sm>
+									<DataGripCard name={i} />
+								</Col>
+							</div>
+						))
+					}
+				</Row>
+			</Container>
+
+		</>
   	);
 }
 
