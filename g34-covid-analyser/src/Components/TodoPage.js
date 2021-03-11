@@ -7,7 +7,7 @@ export const TodoPage = () => {
 
     const [todo, setTodo] = useState([]); 
     useEffect(() => {
-        fetch('/api').then((response) => {
+        fetch('/api').then((response) => { 
             if (response.ok) {
                 return response.json()
             }

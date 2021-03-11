@@ -24,6 +24,14 @@
   color: white;
 }
 
+.current {
+  background-color: #61dafb !important;
+}
+
+.dndItem {
+  background-color: white;
+}
+
 .App-link {
   color: #61dafb;
 }
