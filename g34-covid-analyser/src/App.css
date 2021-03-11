@@ -29,7 +29,7 @@ body{
 }
 
 .current {
-  background-color: #61dafb !important;
+  background-color: #0413189d !important;
 }
 
 .dndItem {
@@ -47,4 +47,8 @@ body{
   to {
     transform: rotate(360deg);
   }
+}
+
+.t-container {
+  background-color: #293742 !important;
 }

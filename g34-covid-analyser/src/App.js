@@ -4,11 +4,11 @@
 	- Rewrite the drag and drop algorithm to accomodate the Bootstrap grid system.
 */
 
-// Import CSS
+// Import CSS.
 import './App.css'; // Import styings for the application.
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import the bootstrap styles.
-import { Grommet, Box, Button, Heading, Grid, Text, ResponsiveContext, Sidebar } from "grommet"; // Import UI components.
-import { grommet } from 'grommet/themes'; // Import grommet themes.
+
+// Import React.
 import React, { useContext, useState, useRef } from 'react'; // Import react.
 
 // Import My Components.
@@ -80,7 +80,7 @@ function App() {
 	
 	return (
 		<>
-			<Navbar bg="dark" variant="dark">
+			<Navbar style={{ backgroundColor: '#30404D' }} className='text-white'>
 				<Navbar.Brand>Hello</Navbar.Brand>
 				<Nav className="mr-auto">
 					<Nav.Link href="#home">Create</Nav.Link>
@@ -105,15 +105,15 @@ function App() {
 				Set target item if not itself-
 				Handle no item case push to group
 				re-order state
-
+style={{backgroundColor: '#0B0C10',
 				Drag end
 				Clean up current item remove drop end listener
 			*/}
-			<Container>
+			<Container style={{padding: '10px', backgroundColor: '#293742', alignSelf: 'center'}}>
 				<Row>
 					{
 						list.items.map((i, i1) => (
-							<div className={dragging?getStyles():"dndItem"} draggable onDragStart={(e) => {
+							<div style={{width: '20rem', backgroundColor: '#293742', alignContent: 'center', marginRight: '10px', marginTop: '10px' }} className={dragging?getStyles():"dndItem"} draggable onDragStart={(e) => {
 								handleDragStart(e, i1)
 							}} 
 							onDragEnter={dragging?(e) => {

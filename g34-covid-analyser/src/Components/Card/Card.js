@@ -42,7 +42,7 @@ class DataGripCard extends React.Component {
     render() {
         
         return (
-            <Card style={{ width: '25rem' }}>
+            <Card className='text-white' style={{ width: '20rem', backgroundColor:  '#202B33'}}>
               <Card.Body>
                 <Card.Title>{ this.props.name }</Card.Title>
                 <Card.Subtitle className='mb-2 text-muted'>{ this.props.index }</Card.Subtitle>
