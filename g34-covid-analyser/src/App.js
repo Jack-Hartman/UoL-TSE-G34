@@ -119,7 +119,7 @@ function App() {
 							onDragEnter={dragging?(e) => {
 								handleDragEnter(e, i1)
 							} : null}>
-								<Col sm>
+								<Col>
 									<DataGripCard name={i} />
 								</Col>
 							</div>
