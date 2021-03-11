@@ -18,6 +18,7 @@ class WHO_Data_Set:
         #  dt.columns = []
 
         # Prints top five rows of table
+
         print(dt.head(5))
 
     # Test/Example Graphs
@@ -44,6 +45,21 @@ class WHO_Data_Set:
         plt.savefig('Deaths - cumulative total per 100000 population')
         plt.show()
 
+    
+class Data_To_JSON:
+    def __init__(countries, byY):
+        # Countries are the country names (should be a list)
+        #byY is the comparison, be it deaths, 
 
+        #Look familiar? Its from example_graphs.py, it should be fairly similar in concept.
+        #Throws all the data for each country (and their corresponding collumn) into a couple of panda.series, which we concat
+        #And then return as JSON
+        x = []
+        for xin in countries:
+            x.append(import_data.dt.loc[import_data.dt['Name'] == xin, [byY]]) # Locates precice data in the database for the input
+        
+
+        g = pd.concat([countries,x]) # Think this'll work?
+        g.to_json()#Gonna need to test this
 
 
