@@ -6,8 +6,8 @@ import Graph from './Components/Graphs/Graph';
 import { DndGrid } from './Components/DndGrid';
 import DataGripCard from './Components/Card/Card'; // Import Card for the graphs.  
 
-const data = {
-	items: ['1', '2', '3', '4', '5', '6']
+const data = { // Example data for the graphs.
+	items: ['1', '2', '3', '4', '5', '6'] // Create a grid like object/array to better initiate the dragging functionality.
 }
 
 function App() {
@@ -15,12 +15,12 @@ function App() {
   	const [sidebar, setSidebar] = useState(true);
 	const size = useContext(ResponsiveContext); 
 
-	const [list, setList] = useState(data);
-	const [dragging, setDragging] = useState(false);
-	const dragItem = useRef();
+	const [list, setList] = useState(data); // Create states for list.
+	const [dragging, setDragging] = useState(false); // Create statets for dragging.
+	const dragItem = useRef(); 
 	const dragNode = useRef();
   	
-	const handleDragStart = (e, location) => {
+	const handleDragStart = (e, location) => { // Calls when the mouse clicks on the item to initiate the drag.
 		console.log('drag starting', location);
 		dragItem.current = location;
 		dragNode.current = e.target;
@@ -31,7 +31,7 @@ function App() {
 		}, 0)
 	}
 
-	const handleDragEnd = () => {
+	const handleDragEnd = () => { // Calls when the user lifts the mouse button.
 		console.log('Ending Drag');
 		setDragging(false);
 		dragItem.current = null;
@@ -39,7 +39,7 @@ function App() {
 		dragNode.current = null;
 	}
 
-	const handleDragEnter = (e, location) => {
+	const handleDragEnter = (e, location) => { // Calls when the object being dragged overlaps another item.
 		console.log('Entering Item', location);
 
 		const currentItem = dragItem.current;
@@ -57,7 +57,7 @@ function App() {
 
 	}
 
-	const getStyles = () => {
+	const getStyles = () => { // A template to maybe add stylse to the project.
 		return 'current';
 	}
 	
