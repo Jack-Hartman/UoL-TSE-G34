@@ -23,7 +23,7 @@ class UserInput:
 		tester = self.Country 
 		print(tester)
 		#for 
-		print(import_data.dt["Name"])
+		#print(import_data.dt["Name"])
 		#O1 = UserInput()
 		count = 0
 		while count < len(import_data.dt["Name"]):
