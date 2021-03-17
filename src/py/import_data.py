@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import import_data
 
 
 class WHO_Data_Set:
@@ -46,20 +47,30 @@ class WHO_Data_Set:
         plt.show()
 
     
-class Data_To_JSON:
-    def __init__(countries, byY):
+class Data_To_JSON: #Passes data as a json
+    def __init__(self, countries, byY):
         # Countries are the country names (should be a list)
         #byY is the comparison, be it deaths, 
 
         #Look familiar? Its from example_graphs.py, it should be fairly similar in concept.
         #Throws all the data for each country (and their corresponding collumn) into a couple of panda.series, which we concat
         #And then return as JSON
+
         x = []
         for xin in countries:
-            x.append(import_data.dt.loc[import_data.dt['Name'] == xin, [byY]]) # Locates precice data in the database for the input
+            x.append(import_data.dt.loc[import_data.dt['Name'] == xin, [byY]].values) # Locates precice data in the database for the input
+            print(x)
+        print("aaaaa")
+        print(x)
+        # At the moment it adds an extra column name for each item int he list, need to delete that
         
+        temp = pd.Series(x)
 
-        g = pd.concat([countries,x]) # Think this'll work?
+        g = pd.concat([pd.Series(countries),temp], axis=1, join="inner") # Think this'll work?
+        print("aaaa")
+        print(g)
+        #g.reset_index(drop=True, inplace=True)
         g.to_json()#Gonna need to test this
+        print(g.to_json())
 
 

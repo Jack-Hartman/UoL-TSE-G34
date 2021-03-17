@@ -30,8 +30,10 @@ today = pd.to_datetime("today")
 print(today)
 
 import_data.WHO_Data_Set()
-example_graphs.plotData()
-user_interact.Input.Selection()
+f = ['France','Spain','The United Kingdom']
+import_data.Data_To_JSON(f,'Cases - cumulative total')
+#example_graphs.plotData()
+#user_interact.Input.Selection()
 
 
 #Run the app.s
