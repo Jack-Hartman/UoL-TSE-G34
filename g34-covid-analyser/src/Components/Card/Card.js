@@ -4,50 +4,16 @@ import Graph from '../Graphs/Graph';
 
 import Card from 'react-bootstrap/Card';
 
-
-/*
-function Example() {
-    const [show, setShow] = React.useState();
-    return (
-      <Box>
-        <Button label="show" onClick={() => setShow(true)} />
-        {show && (
-          <Layer
-            onEsc={() => setShow(false)}
-            onClickOutside={() => setShow(false)}
-          >
-            <Button label="close" onClick={() => setShow(false)} />
-          </Layer>
-        )}
-      </Box>
-    );
-  }
-
-
-
-
-  <Card>
-                <CardHeader align='center' direction='row' flex={false} justify='between' gap='small' pad='small'>
-                    <Heading>{this.props.name}</Heading>
-                </CardHeader>
-                <CardBody pad='small' />
-                <Graph />
-            </Card>
-*/
-
-
 class DataGripCard extends React.Component {
     
-
     render() {
-        
         return (
             <Card className='text-white' style={{ width: '20rem', backgroundColor:  '#202B33'}}>
               <Card.Body>
                 <Card.Title>{ this.props.name }</Card.Title>
                 <Card.Subtitle className='mb-2 text-muted'>{ this.props.index }</Card.Subtitle>
                 <Card.Body style={{ padding: '2px'}}>
-                  <Graph />
+                  <Graph>{ this.props.type }</Graph>
                 </Card.Body>
                 <Card.Text>
                   Some quick example text incase 

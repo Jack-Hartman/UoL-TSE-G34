@@ -88,11 +88,6 @@ function App() {
 					<Nav.Link href="#pricing">Help</Nav.Link>
 				</Nav>
 			</Navbar>
-			
-
-
-
-
 
 			{/*
 				Drag Start: set current item being dragged
@@ -120,7 +115,7 @@ style={{backgroundColor: '#0B0C10',
 								handleDragEnter(e, i1)
 							} : null}>
 								<Col>
-									<DataGripCard name={i} />
+									<DataGripCard name={i} type={'hello'}/>
 								</Col>
 							</div>
 						))

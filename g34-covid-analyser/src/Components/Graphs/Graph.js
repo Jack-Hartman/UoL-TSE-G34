@@ -8,7 +8,7 @@ const data = [
     {quarter: 4, earnings: 19000}
 ];
 
-const Graph = () => {
+const Graph = (props) => {
 
     const [data, setData] = useState([]);
 
@@ -21,11 +21,13 @@ const Graph = () => {
     }, []);
 
     return (
+        
         <VictoryChart
             // domainPadding will add space to each side of VictoryBar to
             // prevent it from overlapping the axis
             domainPadding={20}
-        >
+        >   
+            { console.log(props.type) }
             <VictoryAxis
             // tickValues specifies both the number of ticks and where
             // they are placed on the axis
