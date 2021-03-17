@@ -1,5 +1,5 @@
 import React, { Component, useEffect, useState } from 'react';
-import { VictoryBar, VictoryChart, VictoryAxis } from 'victory';
+import { VictoryPie, VictoryChart } from 'victory';
 
 const data = [
     {quarter: 1, earnings: 13000},
@@ -25,28 +25,14 @@ const Graph = (props) => {
         <VictoryChart
             // domainPadding will add space to each side of VictoryBar to
             // prevent it from overlapping the axis
-            domainPadding={20}
-        >   
-            { console.log(props.type) }
-            <VictoryAxis
-            // tickValues specifies both the number of ticks and where
-            // they are placed on the axis
-            tickValues={[1, 2, 3, 4]}
-            tickFormat={["Quarter 1", "Quarter 2", "Quarter 3", "Quarter 4"]}
-            />
-            <VictoryAxis
-            dependentAxis
-            // tickFormat specifies how ticks should be displayed
-            tickFormat={(x) => (`$${x / 1000}k`)}
-            />
-
-
-            <VictoryBar 
-                data={data}
-                // datta accessor for x values
-                x='quarter'
-                // Data accessor for y values.
-                y='earnings'
+            domainPadding={10}
+        >               
+            <VictoryPie
+            data={[
+                { x: "Cats", y: 200 },
+                { x: "Dogs", y: 40 },
+                { x: "Birds", y: 55 }
+            ]}
             />
         </VictoryChart>
     );
