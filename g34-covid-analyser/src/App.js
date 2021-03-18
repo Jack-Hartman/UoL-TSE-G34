@@ -27,6 +27,10 @@ const data = { // Example data for the graphs.
 	items: ['1', '2', '3', '4', '5', '6'] // Create a grid like object/array to better initiate the dragging functionality.
 }
 
+const types = {
+	items: ['1', '2', '3', '1', '2', '3'] // Create a test object to store the graphs created.
+}
+
 function App() {
 
   	//const [sidebar, setSidebar] = useState(true);
@@ -115,7 +119,7 @@ style={{backgroundColor: '#0B0C10',
 								handleDragEnter(e, i1)
 							} : null}>
 								<Col>
-									<DataGripCard name={i} type={'hello'}/>
+									<DataGripCard name={i} type={types.items[i1]}/>
 								</Col>
 							</div>
 						))
