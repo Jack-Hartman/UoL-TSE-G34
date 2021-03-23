@@ -3,9 +3,6 @@ G34 Covid Analyser
 
 Website now visible at https://tse.jackhartman.dev/
 
-
-# G34 Covid Analyser
-
 # To-Do List
 - Make card component and fit it into the grid system.
 - Make a database to store the users configurations (Desktop version only).
