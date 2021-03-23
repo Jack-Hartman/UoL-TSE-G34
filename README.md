@@ -1,4 +1,4 @@
-)
+G34 Covid Analyser
 =======
 
 Website now visible at https://tse.jackhartman.dev/
