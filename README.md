@@ -1,7 +1,7 @@
 )
 =======
 
-Website now visible at https://saintsman.github.io/UoL-TSE-G34/
+Website now visible at https://tse.jackhartman.dev/
 
 
 # G34 Covid Analyser
