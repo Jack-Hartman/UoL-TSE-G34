@@ -13,6 +13,7 @@ class DataGripCard extends React.Component {
                 <Card.Title>{ this.props.name }</Card.Title>
                 <Card.Subtitle className='mb-2 text-muted'>{ this.props.index }</Card.Subtitle>
                 <Card.Body style={{ padding: '2px'}}>
+                  {/* <Graph>{ this.props.type }</Graph> */}
                   <Graph>{ this.props.type }</Graph>
                 </Card.Body>
                 <Card.Text>

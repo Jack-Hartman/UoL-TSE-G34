@@ -8,6 +8,8 @@ import {
     VictoryPolarAxis 
 } from 'victory';
 
+import pie from './Pie';
+
 
 const iData = [
     { x: "Cats", y: 200 },
@@ -21,12 +23,6 @@ const data = [
     {quarter: 3, earnings: 14250},
     {quarter: 4, earnings: 19000}
 ];
-
-const pie = () => {
-    return (
-        <VictoryPie data={iData} />
-    );
-}
 
 const bar = () => {
     return (
@@ -84,25 +80,47 @@ const polar = () => {
     );
 }
 
-const Graph = (props) => {
+// const Graph = (props) => {
 
-    const [data, setData] = useState([]);
-    const type = props.type;
+//     const [data, setData] = useState([]);
+//     const type = false;
 
-    useEffect(() => {
-        fetch('/api').then((res) => {
-            if (res.ok) {
-                return res.json();
-            }
-        }).then(data => console.log(data));
-    }, []);
+//     useEffect(() => {
+//         fetch('/api').then((res) => {
+//             if (res.ok) {
+//                 return res.json();
+//             }
+//         }).then(data => console.log(data));
+//     }, []);
 
-    if (type == '1') {
-        return <pie />;
-    } else if (type == '2') {
-        return <bar />
-    } else if (type == '3') {
-        return <polar />
+//     if (type) {
+//         return (
+//             <pie />
+//         );
+//     } else {
+//         return (
+//             <h1>False</h1>
+//         );
+//     }
+// }
+
+class Graph extends React.Component {
+
+    // useEffect(() => {
+    //     fetch('/api').then((res) => {
+    //         if (res.ok) {
+    //             return res.json();
+    //         }
+    //     }).then(data => console.log(data));
+    // }), []);
+
+    render() {
+        return (
+            <div>
+                <pie />
+                <h1>Yo</h1>
+            </div>
+        );
     }
 }
 
