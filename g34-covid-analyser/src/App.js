@@ -15,7 +15,8 @@ import React, { useContext, useState, useRef } from 'react'; // Import react.
 import Graph from './Components/Graphs/Graph';
 import { DndGrid } from './Components/DndGrid';
 import DataGripCard from './Components/Card/Card'; // Import Card for the graphs.
-import DefaultGraphs from'./Components/Parts/DefaultGraphs';
+import DefaultGraphs from './Components/Parts/DefaultGraphs';
+import Worldwide from './Components/Parts/WorldWide';
 
 // Import Bootstrap Components (Import each component ont at a time to save space).
 import Navbar from 'react-bootstrap/Navbar';
@@ -109,8 +110,8 @@ style={{backgroundColor: '#0B0C10',
 				Drag end
 				Clean up current item remove drop end listener
 			*/}
+			<Worldwide />
 			<DefaultGraphs />
-			
 			<Container style={{padding: '10px', backgroundColor: '#293742', alignSelf: 'center'}}>
 				<Row>
 					{
