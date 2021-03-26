@@ -7,9 +7,22 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 
 // Import victory charts:
+import { 
+    VictoryChart,
+    VictoryAxis,
+    VictoryTheme,
+    VictoryBar,
+    VictoryPie
+} from 'victory';
 
 // Import my Components:
 import DataGripCard from '../Card/Card';
+
+const data = [
+    {x: 'Deaths', y: 13000},
+    {x: 'Recovered', y: 500},
+];
+
 
 const DefaultGraphs = () => {
 
@@ -40,11 +53,13 @@ const DefaultGraphs = () => {
                                 <Card.Subtitle className='mb-2 text-muted'>UK</Card.Subtitle>
                                 <Card.Body style={{ padding: '2px'}}>
                                 {/* <Graph>{ this.props.type }</Graph> */}
-
-
-
-
-
+                                    <VictoryChart
+                                        // adding the material theme provided with Victory
+                                        theme={VictoryTheme.material}
+                                    >
+                                        
+                                        <VictoryPie data={data} />
+                                    </VictoryChart>
                                 </Card.Body>
                                 <Card.Text>
                                 Some quick example text incase 
@@ -73,11 +88,7 @@ const DefaultGraphs = () => {
                                 <Card.Subtitle className='mb-2 text-muted'>UK</Card.Subtitle>
                                 <Card.Body style={{ padding: '2px'}}>
                                 {/* <Graph>{ this.props.type }</Graph> */}
-
-                                
-
-
-
+                                    
                                 </Card.Body>
                                 <Card.Text>
                                 Some quick example text incase 
