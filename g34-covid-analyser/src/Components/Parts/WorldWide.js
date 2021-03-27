@@ -23,7 +23,7 @@ class Worldwide extends React.Component{
                                     <Card.Title>Deaths / Cases</Card.Title>
                                     <Card.Subtitle className='mb-2 text-muted'>World Wide</Card.Subtitle>
                                     <Card.Body style={{ padding: '2px'}}>
-                                        <VictoryChart scale={{ x: "time" }} width={400} height={400} animate={1000}>
+                                        <VictoryChart scale={{ x: "time" }} width={400} height={400}>
                                             <VictoryStack colorScale="warm">
                                                 <VictoryGroup
                                                     data={[
@@ -34,7 +34,7 @@ class Worldwide extends React.Component{
                                                         { x: 'May 2020', y: 6 }
                                                     ]}
                                                 >
-                                                <VictoryArea />
+                                                <VictoryArea/>
                                                 <VictoryPortal>
                                                     <VictoryScatter
                                                     style={{ data: { fill: "black" } }}
@@ -96,3 +96,53 @@ class Worldwide extends React.Component{
 }
 
 export default Worldwide;
+
+// class App extends React.Component {
+//     constructor(props) {
+//       super(props);
+//       this.state = { data: this.getData() };
+//     }
+  
+//     componentDidMount() {
+//       this.setStateInterval = window.setInterval(() => {
+//         this.setState({ data: this.getData() });
+//       }, 4000);
+//     }
+  
+//     getData() {
+//       return _.range(7).map(() => {
+//         return [
+//           { x: 1, y: _.random(1, 5) },
+//           { x: 2, y: _.random(1, 10) },
+//           { x: 3, y: _.random(2, 10) },
+//           { x: 4, y: _.random(2, 10) },
+//           { x: 5, y: _.random(2, 15) }
+//         ];
+//       });
+//     }
+  
+//     render() {
+//       return (
+//         <VictoryChart
+//           theme={VictoryTheme.material}
+//           animate={{ duration: 1000 }}
+//         >
+//           <VictoryStack
+//             colorScale={"blue"}
+//           >
+//             {this.state.data.map((data, i) => {
+//               return (
+//                 <VictoryArea
+//                   key={i}
+//                   data={data}
+//                   interpolation={"basis"}
+//                 />
+//               );
+//             })}
+//           </VictoryStack>
+//         </VictoryChart>
+//       );
+//     }
+//   }
+  
+//   ReactDOM.render(<App/>, mountNode);
