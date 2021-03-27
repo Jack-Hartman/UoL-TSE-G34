@@ -8,9 +8,7 @@ import Card from 'react-bootstrap/Card';
 
 // Import Victory:
 import { 
-    VictoryChart, 
-    VictoryLine, 
-    VictoryTheme, 
+    VictoryChart,
     VictoryArea, 
     VictoryStack, 
     VictoryPortal, 
@@ -29,7 +27,7 @@ class Worldwide extends React.Component{
                     {
                         width: '30rem', 
                         backgroundColor: '#293742', 
-                    }
+                    }  
                 }>
                     <Card  className='text-white' style={{ backgroundColor: '#202B33'}}>
                         <Card.Body>

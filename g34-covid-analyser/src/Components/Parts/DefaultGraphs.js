@@ -35,7 +35,7 @@ const DefaultGraphs = () => {
     const [dataToDisplay, setGraphicData] = useState(defaultData);
 
     useEffect(() => {
-        fetch('/api').then((res) => {
+        fetch('/defaultData').then((res) => {
             if (res.ok) {
                 return res.json();
             }
@@ -78,11 +78,7 @@ const DefaultGraphs = () => {
                                     {/* </VictoryChart> */}
                                 </Card.Body>
                                 <Card.Text>
-                                Some quick example text incase 
-                                the user may want to put notes here. 
-                                This feature can easily be taken out 
-                                but I implemented it just incase we had 
-                                a use for it.
+                                Death and recoveries for the country
                                 </Card.Text>
                                 <Card.Link href='#'>Enlarge</Card.Link>
                                 <Card.Link href='#'>Edit</Card.Link>
