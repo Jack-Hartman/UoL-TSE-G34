@@ -12,8 +12,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'; // Import the bootstrap styles.
 import React, { useContext, useState, useRef } from 'react'; // Import react.
 
 // Import My Components.
-import Graph from './Components/Graphs/Graph';
-import { DndGrid } from './Components/DndGrid';
 import DataGripCard from './Components/Card/Card'; // Import Card for the graphs.
 import DefaultGraphs from './Components/Parts/DefaultGraphs';
 import Worldwide from './Components/Parts/WorldWide';

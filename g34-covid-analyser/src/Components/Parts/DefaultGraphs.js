@@ -12,7 +12,8 @@ import {
     VictoryAxis,
     VictoryTheme,
     VictoryBar,
-    VictoryPie
+    VictoryPie,
+    VictoryGroup
 } from 'victory';
 
 // Import my Components:
@@ -66,14 +67,14 @@ const DefaultGraphs = () => {
                                         theme={VictoryTheme.material}
                                     > */}
                                         
-                                        <VictoryPie 
-                                            animate={{ easing: 'exp', duration: 1000 }} 
-                                            data={dataToDisplay} 
-                                            width={250} 
-                                            height={250} 
-                                            colorScale={graphicColor} 
-                                            innerRadius={50} 
-                                        />
+                                    <VictoryPie 
+                                        animate={{ easing: 'exp', duration: 1000 }} 
+                                        data={dataToDisplay} 
+                                        width={250} 
+                                        height={250} 
+                                        colorScale={graphicColor} 
+                                        innerRadius={50} 
+                                    />
                                     {/* </VictoryChart> */}
                                 </Card.Body>
                                 <Card.Text>
@@ -99,18 +100,28 @@ const DefaultGraphs = () => {
                     }}>
                         <Card className='text-white' style={{ width: '20rem', backgroundColor:  '#202B33'}}>
                             <Card.Body>
-                                <Card.Title>Men VS Women</Card.Title>
+                                <Card.Title>Information for each country in 'users continent '</Card.Title>
                                 <Card.Subtitle className='mb-2 text-muted'>UK</Card.Subtitle>
                                 <Card.Body style={{ padding: '2px'}}>
                                 {/* <Graph>{ this.props.type }</Graph> */}
-                                    
+                                    <VictoryChart>
+                                        <VictoryGroup offset={20}
+                                            colorScale={"qualitative"}
+                                        >
+                                            <VictoryBar
+                                            data={[{ x: 'Deaths', y: 1 }, { x: 'Cases', y: 2 }, { x: 'Vaccines', y: 5 }]}
+                                            />
+                                            <VictoryBar
+                                            data={[{ x: 'Deaths', y: 2 }, { x: 'Cases', y: 1 }, { x: 'Vaccines', y: 7 }]}
+                                            />
+                                            <VictoryBar
+                                            data={[{ x: 'Deaths', y: 3 }, { x: 'Cases', y: 4 }, { x: 'Vaccines', y: 9 }]}
+                                            />
+                                        </VictoryGroup>
+                                    </VictoryChart>
                                 </Card.Body>
                                 <Card.Text>
-                                Some quick example text incase 
-                                the user may want to put notes here. 
-                                This feature can easily be taken out 
-                                but I implemented it just incase we had 
-                                a use for it.
+                                Data for the infection rate, cases, deaths, vaccines given.
                                 </Card.Text>
                                 <Card.Link href='#'>Enlarge</Card.Link>
                                 <Card.Link href='#'>Edit</Card.Link>
@@ -132,11 +143,7 @@ const DefaultGraphs = () => {
                                 <Card.Subtitle className='mb-2 text-muted'>UK</Card.Subtitle>
                                 <Card.Body style={{ padding: '2px'}}>
                                 {/* <Graph>{ this.props.type }</Graph> */}
-
-                                
-
-
-
+                                    
                                 </Card.Body>
                                 <Card.Text>
                                 Some quick example text incase 
