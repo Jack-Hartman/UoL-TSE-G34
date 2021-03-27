@@ -20,11 +20,18 @@ import DataGripCard from '../Card/Card';
 
 const data = [
     {x: 'Deaths', y: 13000},
-    {x: 'Recovered', y: 500},
+    {x: 'Recovered', y: 500}
 ];
+const defaultData = [
+    {x: 'Deaths', y: 13000},
+    {x: 'Recovereed', y:500}
+]
 
+const graphicColor = ['#388087', '#6fb3b8'];
 
 const DefaultGraphs = () => {
+
+    const [dataToDisplay, setGraphicData] = useState(defaultData);
 
     useEffect(() => {
         fetch('/api').then((res) => {
@@ -32,8 +39,10 @@ const DefaultGraphs = () => {
                 return res.json();
             }
         }).then(data => console.log(data));
-    })
-    
+
+        setGraphicData(data); // Setting the data that we want to display
+    }, []);
+
     return (
         <Container style={{ backgroundColor: '#293742', alignSelf: 'center'}}>
             <Row>
@@ -53,13 +62,20 @@ const DefaultGraphs = () => {
                                 <Card.Subtitle className='mb-2 text-muted'>UK</Card.Subtitle>
                                 <Card.Body style={{ padding: '2px'}}>
                                 {/* <Graph>{ this.props.type }</Graph> */}
-                                    <VictoryChart
+                                    {/* <VictoryChart
                                         // adding the material theme provided with Victory
                                         theme={VictoryTheme.material}
-                                    >
+                                    > */}
                                         
-                                        <VictoryPie data={data} />
-                                    </VictoryChart>
+                                        <VictoryPie 
+                                            animate={{ easing: 'exp', duration: 1000 }} 
+                                            data={dataToDisplay} 
+                                            width={250} 
+                                            height={250} 
+                                            colorScale={graphicColor} 
+                                            innerRadius={50} 
+                                        />
+                                    {/* </VictoryChart> */}
                                 </Card.Body>
                                 <Card.Text>
                                 Some quick example text incase 
