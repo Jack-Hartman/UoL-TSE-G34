@@ -110,9 +110,22 @@ style={{backgroundColor: '#0B0C10',
 				Drag end
 				Clean up current item remove drop end listener
 			*/}
-			<Worldwide />
-			<DefaultGraphs />
-			<Container style={{padding: '10px', backgroundColor: '#293742', alignSelf: 'center'}}>
+			
+			
+			<Container style={{padding: '5px', backgroundColor: '#293742', alignSelf: 'center'}}>
+				<Row style={{ width: '100%'}}>
+					<Col>
+						<Worldwide />
+						<br />
+						<br />
+						<br />
+					</Col>
+					<Col>
+						<Row>
+							<DefaultGraphs />
+						</Row>
+					</Col>
+				</Row>
 				<Row>
 					{
 						list.items.map((i, i1) => (

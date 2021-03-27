@@ -35,7 +35,7 @@ const DefaultGraphs = () => {
     })
     
     return (
-        <Container style={{padding: '10px', backgroundColor: '#293742', alignSelf: 'center'}}>
+        <Container style={{ backgroundColor: '#293742', alignSelf: 'center'}}>
             <Row>
                 <Col>
                     <div style={

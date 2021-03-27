@@ -14,11 +14,14 @@ class Worldwide extends React.Component{
     render() {
         return (
             <Container style={{padding: '10px', backgroundColor: '#293742', alignSelf: 'center'}}>
-                <Row>
-                    <Col>
-                        <div>
-    
-                            <Card  className='text-white' style={{ backgroundColor:  '#202B33'}}>
+                
+                        <div style={
+                            {
+                                width: '30rem', 
+                                backgroundColor: '#293742', 
+                            }
+                        }>
+                            <Card  className='text-white' style={{ backgroundColor: '#202B33'}}>
                                 <Card.Body>
                                     <Card.Title>Deaths / Cases</Card.Title>
                                     <Card.Subtitle className='mb-2 text-muted'>World Wide</Card.Subtitle>
@@ -34,7 +37,7 @@ class Worldwide extends React.Component{
                                                         { x: 'May 2020', y: 6 }
                                                     ]}
                                                 >
-                                                <VictoryArea />
+                                                <VictoryArea interpolation={'natural'} />
                                                 <VictoryPortal>
                                                     <VictoryScatter
                                                     style={{ data: { fill: "black" } }}
@@ -50,7 +53,7 @@ class Worldwide extends React.Component{
                                                     { x: 'May 2020', y: 6 }
                                                 ]}
                                                 >
-                                                <VictoryArea/>
+                                                <VictoryArea interpolation={'natural'} />
                                                 <VictoryPortal>
                                                     <VictoryScatter
                                                     style={{ data: { fill: "black" } }}
@@ -66,7 +69,7 @@ class Worldwide extends React.Component{
                                                     { x: 'May 2020', y: 6 }
                                                 ]}
                                                 >
-                                                <VictoryArea/>
+                                                <VictoryArea interpolation={'natural'} />
                                                 <VictoryPortal>
                                                     <VictoryScatter
                                                     style={{ data: { fill: "black" } }}
@@ -88,8 +91,6 @@ class Worldwide extends React.Component{
                                 </Card.Body>
                             </Card>
                         </div>
-                    </Col>
-                </Row>
             </Container>
         )
     }
