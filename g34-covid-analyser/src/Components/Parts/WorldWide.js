@@ -24,7 +24,7 @@ class Worldwide extends React.Component{
 
     render() {
         return (
-            <Container style={{padding: '10px', backgroundColor: '#293742', alignSelf: 'center'}}>
+            <Container fluid style={{padding: '10px', backgroundColor: '#293742', alignSelf: 'center'}}>
                 <div style={
                     {
                         width: '30rem', 
@@ -33,7 +33,7 @@ class Worldwide extends React.Component{
                 }>
                     <Card  className='text-white' style={{ backgroundColor: '#202B33'}}>
                         <Card.Body>
-                            <Card.Title>Deaths / Cases</Card.Title>
+                            <Card.Title>Population / Infecfcted / Deaths</Card.Title>
                             <Card.Subtitle className='mb-2 text-muted'>World Wide</Card.Subtitle>
                             <Card.Body style={{ padding: '2px'}}>
                                 <VictoryChart scale={{ x: "time" }} width={400} height={400} animate={1000}>

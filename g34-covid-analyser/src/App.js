@@ -112,7 +112,7 @@ style={{backgroundColor: '#0B0C10',
 			*/}
 			
 			
-			<Container style={{padding: '5px', backgroundColor: '#293742', alignSelf: 'center'}}>
+			<Container fluid style={{padding: '5px', backgroundColor: '#293742', alignSelf: 'center'}}>
 				<Row style={{ width: '100%'}}>
 					<Col>
 						<Worldwide />

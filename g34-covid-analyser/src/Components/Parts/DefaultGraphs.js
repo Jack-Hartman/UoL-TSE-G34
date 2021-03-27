@@ -44,15 +44,14 @@ const DefaultGraphs = () => {
     }, []);
 
     return (
-        <Container style={{ backgroundColor: '#293742', alignSelf: 'center'}}>
+        <Container fluid style={{ backgroundColor: '#293742', alignSelf: 'center'}}>
             <Row>
                 <Col>
                     <div style={
                         {
                             width: '20rem', 
                             backgroundColor: '#293742', 
-                            alignContent: 'center', 
-                            marginRight: '10px', 
+                            alignContent: 'center',
                             marginTop: '10px' 
                         }
                     }>
