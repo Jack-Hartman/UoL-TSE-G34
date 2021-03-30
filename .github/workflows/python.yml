@@ -47,10 +47,10 @@ jobs:
         pytest
     - name: Deploy files to remote
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
-      working-directory: ${{env.working-directory}}
       with:
         server: api.tse.jackhartman.dev
         username: tse
         password: ${{ secrets.ftp_password }}
+        working-directory: ${{env.working-directory}}
      
       
