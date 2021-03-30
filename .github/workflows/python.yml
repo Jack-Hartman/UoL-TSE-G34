@@ -2,12 +2,13 @@ name: Python-CI/CD
 
 on:
   push:
-    branches: [ main ]
+    branches: [ Jack_Dev ]
+    paths:
     - 'g34-covid-analyser/backend/**'
     paths-ignore:
     - 'g34-covid-analyser/**'
   pull_request:
-    branches: [ main ]
+    branches: [ Jack_Dev ]
     paths:
     - 'g34-covid-analyser/backend/**'
     paths-ignore:
