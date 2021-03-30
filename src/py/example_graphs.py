@@ -47,22 +47,30 @@ def Infection_Rate_Country():
 	
 	print(Out)
 	
-class Data_To_JSON:
-	def __init__(countries, byY):
-		# Countries are the country names (should be a list)
-		#byY is the comparison, be it deaths, 
-		O1 = user_interact.UserInput()
-		O1.Checker()
 
-		inputtest = input("Country name mate: ")
-		
-		#Look familiar? Its from example_graphs.py, it should be fairly similar in concept.
-		#Throws all the data for each country (and their corresponding collumn) into a couple of panda.series, which we concat
-		#And then return as JSON
-		x = []
-		xtest = []
-		for xin in inputtest:
-			x.append(import_data.dt.loc[import_data.dt['Name'] == xin, [byY]]) # Locates precice data in the database for the input
-		
-		g = pd.concat([inputtest,x]) # Think this'll work?
-		g.to_json()#Gonna need to test this
+class Data_To_JSON: #Passes data as a json
+    def __init__(self, countries, byY):
+        # Countries are the country names (should be a list)
+        #byY is the comparison, be it deaths, 
+
+        #Look familiar? Its from example_graphs.py, it should be fairly similar in concept.
+        #Throws all the data for each country (and their corresponding collumn) into a couple of panda.series, which we concat
+        #And then return as JSON
+
+        x = []
+        for xin in countries:
+            x.append(import_data.dt.loc[import_data.dt['Name'] == xin, [byY]].values) # Locates precice data in the database for the input
+            print(x)
+        print("aaaaa")
+        print(x)
+        # At the moment it adds an extra column name for each item int he list, need to delete that
+        
+        temp = pd.Series(x)
+
+        g = pd.concat([pd.Series(countries),temp], axis=1, join="inner") # Think this'll work?
+        print("aaaa")
+        print(g)
+        #g.reset_index(drop=True, inplace=True)
+        g.to_json()#Gonna need to test this
+        print(g.to_json())
+

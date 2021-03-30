@@ -3,6 +3,7 @@ import pandas as pd
 import json
 
 class WHO_Data_Set:
+
    
 	def __init__(self):
 		#Reading WHO data-set

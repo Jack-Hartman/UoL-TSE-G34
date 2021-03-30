@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 
 class UserInput:
-	def __init__(self):
+    	def __init__(self):
 
 		self.Country = input("Enter a country: ")
 
