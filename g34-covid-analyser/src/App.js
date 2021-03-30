@@ -9,54 +9,58 @@ import './App.css'; // Import styings for the application.
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import the bootstrap styles.
 
 // Import React.
-import React from 'react'; // Import react.
+import React, { Component } from 'react'; // Import react.
 
 // Import My Components.
-import DefaultGraphs from './Components/Parts/DefaultGraphs';
-import Worldwide from './Components/Parts/WorldWide';
-import DragNdrop from './Components/Parts/DragnDrop';
+import Default from './Views/Default';
+import About from './Views/About';
 
 // Import Bootstrap Components (Import each component ont at a time to save space).
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 
-function App() {
+class App extends Component {
 	
-	return (
-		<>
-			<Navbar style={{ backgroundColor: '#30404D' }} className='text-white'>
-				<Navbar.Brand>Hello</Navbar.Brand>
-				<Nav className="mr-auto">
-					<Nav.Link href="#home">Create</Nav.Link>
-					<Nav.Link href="#features">Manage</Nav.Link>
-					<Nav.Link href="#pricing">Help</Nav.Link>
-				</Nav>
-			</Navbar>
+	constructor(props) {
+		super (props);
+		this.state = { View: 'default'}
+	}
 
-			<Container fluid style={{padding: '5px', backgroundColor: '#293742', alignSelf: 'center'}}>
-				<Row style={{ width: '100%'}}>
-					<Col>
-						<Worldwide />
-						<br />
-						<br />
-						<br />
-					</Col>
-					<Col>
-						<Row>
-							<DefaultGraphs />
-						</Row>
-					</Col>
-				</Row>
-				<Row>
-					<DragNdrop />
-				</Row>
-			</Container>
+	componentDidMount() { // Runs after compoennt has been mounted
+		console.log(this.getCurrentView());
+	}
 
-		</>
-  	);
+	getCurrentView() {
+		return this.state;
+	}
+	
+	render () {	
+		let ui;
+		
+		if (this.state.View === 'default') {
+			ui = <Default />
+		} else if (this.state.View === 'about') {
+			ui = <About />
+		}
+
+		return (
+			<>
+				<Navbar style={{ backgroundColor: '#30404D' }} className='text-white'>
+					<Navbar.Brand>Hello</Navbar.Brand>
+					<Nav className="mr-auto">
+						<Nav.Link href="#home">Create</Nav.Link>
+						<Nav.Link href="#features">Manage</Nav.Link>
+						<Nav.Link href="#pricing">Help</Nav.Link>
+					</Nav>
+				</Navbar>
+				
+				{/* Where the main view of the application is */}
+				{
+					ui
+				}
+			</>
+		);
+	}
 }
 
 export default App;
