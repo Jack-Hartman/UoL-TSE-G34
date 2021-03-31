@@ -1,9 +1,3 @@
-/*
-	- Add bootstrap
-	- Rewrite algorithm to dynamically render the graphs.
-	- Rewrite the drag and drop algorithm to accomodate the Bootstrap grid system.
-*/
-
 // Import CSS.
 import './App.css'; // Import styings for the application.
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import the bootstrap styles.
@@ -18,12 +12,19 @@ import About from './Views/About';
 // Import Bootstrap Components (Import each component ont at a time to save space).
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
+import Button from 'react-bootstrap/Button';
 
 class App extends Component {
 	
 	constructor(props) {
 		super (props);
 		this.state = { View: 'default'}
+
+		// This binding is neccessary to make `this` work in the callback
+		this.handleAboutClick = this.handleAboutClick.bind(this);
+		this.handleAccountClick = this.handleAccountClick.bind(this);
+		this.handleCreateClick = this.handleCreateClick.bind(this);
+		this.handleHomeClick = this.handleHomeClick.bind(this);
 	}
 
 	componentDidMount() { // Runs after compoennt has been mounted
@@ -32,6 +33,35 @@ class App extends Component {
 
 	getCurrentView() {
 		return this.state;
+	}
+
+	handleNavClick(destination) {
+		// Need to see what the value is:
+		this.setState(state => ({
+			View: 'about'
+		}));
+	}
+
+	handleCreateClick() {
+		this.setState(state => ({
+			View: 'create'
+		}));
+	}
+
+	handleAboutClick() {
+		this.setState(state => ({
+			View: 'info'
+		}));
+	}
+
+	handleAccountClick() {
+
+	}
+
+	handleHomeClick() {
+		this.setState(state => ({
+			View: 'default'
+		}));
 	}
 	
 	render () {	
@@ -46,11 +76,11 @@ class App extends Component {
 		return (
 			<>
 				<Navbar style={{ backgroundColor: '#30404D' }} className='text-white'>
-					<Navbar.Brand>Hello</Navbar.Brand>
+					<Navbar.Brand onClick={this.handleHomeClick}>G34 Covid Analyser</Navbar.Brand>
 					<Nav className="mr-auto">
-						<Nav.Link href="#home">Create</Nav.Link>
-						<Nav.Link href="#features">Manage</Nav.Link>
-						<Nav.Link href="#pricing">Help</Nav.Link>
+						<Button variant="primary">Create</Button>
+						<Button variant="info" onClick={this.handleAboutClick}>About</Button>
+						<Button variant="danger">Account</Button>
 					</Nav>
 				</Navbar>
 				
