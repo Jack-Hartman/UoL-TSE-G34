@@ -10,6 +10,7 @@ import Col from 'react-bootstrap/Col';
 import DefaultGraphs from '../Components/Parts/DefaultGraphs';
 import Worldwide from '../Components/Parts/WorldWide';
 import DragNdrop from '../Components/Parts/DragnDrop';
+import News from '../Components/Parts/News';
 
 class Default extends Component {
 
@@ -30,8 +31,11 @@ class Default extends Component {
 					</Col>
 				</Row>
 				<Row>
-					<DragNdrop />
+					<News />
 				</Row>
+				{/* <Row>
+					<DragNdrop />
+				</Row> */}
 			</Container>
         );
     }
