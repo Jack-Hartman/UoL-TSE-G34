@@ -3,12 +3,6 @@ G34 Covid Analyser
 
 Website now visible at https://tse.jackhartman.dev/
 
-# To-Do List
-- Make card component and fit it into the grid system.
-- Make a database to store the users configurations (Desktop version only).
-- Create the desktop version using Electron.
-
-
 # How to install for development:
 
 ## Requirements:

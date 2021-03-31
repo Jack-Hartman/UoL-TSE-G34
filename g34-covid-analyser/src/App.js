@@ -55,7 +55,7 @@ class App extends Component {
 
 	handleAboutClick() {
 		this.setState(state => ({
-			View: 'info'
+			View: 'about'
 		}));
 	}
 
