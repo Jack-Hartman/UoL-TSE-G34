@@ -8,6 +8,7 @@ import React, { Component } from 'react'; // Import react.
 // Import My Components.
 import Default from './Views/Default';
 import About from './Views/About';
+import Loading from './Views/Loading';
 
 // Import Bootstrap Components (Import each component ont at a time to save space).
 import Navbar from 'react-bootstrap/Navbar';
@@ -18,7 +19,7 @@ class App extends Component {
 	
 	constructor(props) {
 		super (props);
-		this.state = { View: 'default'}
+		this.state = { View: 'loading'}
 
 		// This binding is neccessary to make `this` work in the callback
 		this.handleAboutClick = this.handleAboutClick.bind(this);
@@ -28,7 +29,11 @@ class App extends Component {
 	}
 
 	componentDidMount() { // Runs after compoennt has been mounted
-		console.log(this.getCurrentView());
+		setTimeout(() => {
+			this.setState(state => ({
+				View: 'default'
+			}));
+		}, 3000);
 	}
 
 	getCurrentView() {
@@ -37,7 +42,7 @@ class App extends Component {
 
 	handleNavClick(destination) {
 		// Need to see what the value is:
-		this.setState(state => ({
+		this.setState(state => ({ // set the state.
 			View: 'about'
 		}));
 	}
@@ -71,6 +76,8 @@ class App extends Component {
 			ui = <Default />
 		} else if (this.state.View === 'about') {
 			ui = <About />
+		} else if (this.state.View === 'loading') {
+			ui = <Loading />
 		}
 
 		return (
