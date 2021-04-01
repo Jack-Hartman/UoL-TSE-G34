@@ -13,21 +13,24 @@ class News extends Component {
     }
 
     componentDidMount() {
-        this.newsapi.v2.topHeadlines({
-            sources: 'bbc-news,the-verge',
-            q: 'bitcoin',
-            category: 'business',
-            language: 'en',
-            country: 'us'
-          }).then(response => {
-            console.log(response);
-            /*
-              {
-                status: "ok",
-                articles: [...]
-              }
-            */
-          });
+		// GET request using fetch with error handling
+		fetch('https://newsapi.org/v2/everything?q=tesla&from=2021-03-01&sortBy=publishedAt&apiKey=656d88bc51824b7b9b1a695745fdcef2')
+			.then(async res => {
+				const data = await res.json();
+
+				// Check for error response:
+				if (!res.ok) {
+					const error = (data && data.message) || res.statusText;
+					return Promise.reject(error);
+				}
+
+				this.setState({ News: 'loaded' });
+				console.log(res.json);
+			})
+			.catch(error => {
+				this.setState({ News: 'absent' });
+				console.error('Error: ', error);
+			});
     }
 
     render() {
