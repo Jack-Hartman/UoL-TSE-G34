@@ -54,7 +54,8 @@ jobs:
       with:
         server: api.tse.jackhartman.dev
         username: tse
-        password: ${{ secrets.ftp_password }}
+        password: ${{ secrets.FTP_PASS }}
+        server-dir: /home/tse/
         working-directory: ${{env.working-directory}}
      
       
