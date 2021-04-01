@@ -51,8 +51,7 @@ jobs:
       working-directory: ${{env.working-directory}}
     - name: Test with pytest
       run: |
-        ls
-        pytest
+        pytest main.py
       working-directory: ${{env.working-directory}}
     - name: Deploy files to remote
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
