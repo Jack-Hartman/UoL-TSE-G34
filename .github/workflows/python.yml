@@ -56,6 +56,6 @@ jobs:
         username: tse
         password: ${{ secrets.FTP_PASS }}
         server-dir: /home/tse/
-        working-directory: ${{env.working-directory}}
+        local-dir: ${{env.working-directory}}/
      
       
