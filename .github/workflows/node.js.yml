@@ -24,6 +24,14 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+    - name: Cache Node.js modules
+      uses: actions/cache@v2
+      with:
+        path: ~/.npm
+        key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.OS }}-node-
+          ${{ runner.OS }}-
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
@@ -34,9 +42,10 @@ jobs:
     - name: Build
       run: CI='' npm run build
       working-directory: ${{env.working-directory}}
-    - name: Setup GitHub Pages
+    - name: Deploy
       uses: JamesIves/github-pages-deploy-action@4.1.0
       with:
         branch: gh-pages
+        folder: /
 
        
