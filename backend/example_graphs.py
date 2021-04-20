@@ -1,5 +1,5 @@
 import import_data
-import User_Interact
+import user_interact
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
