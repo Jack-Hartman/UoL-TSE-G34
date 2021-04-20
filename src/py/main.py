@@ -1,6 +1,6 @@
 #Imports
 import import_data
-import user_interact
+import User_Interact
 import example_graphs
 
 import numpy as np
