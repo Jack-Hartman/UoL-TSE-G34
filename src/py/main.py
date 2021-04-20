@@ -32,7 +32,7 @@ today = DT.date.today()
 print(today)
 
 import_data.WHO_Data_Set()
-#example_graphs.Infection_Rate_Country()
+example_graphs.Data_To_JSON(["India"], "Cases - cumulative total")
 #import_data.WHO_Data_Set.Test_Graph()
 #example_graphs.Data_To_JSON()
 

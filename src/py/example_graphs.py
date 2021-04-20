@@ -2,6 +2,7 @@ import import_data
 import User_Interact
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 
 
 def Test_Graph():
@@ -49,28 +50,31 @@ def Infection_Rate_Country():
 	
 
 class Data_To_JSON: #Passes data as a json
-    def __init__(self, countries, byY):
-        # Countries are the country names (should be a list)
-        #byY is the comparison, be it deaths, 
+	def __init__(self, countries, byY):
+		# Countries are the country names (should be a list)
+		#byY is the comparison, be it deaths, 
 
-        #Look familiar? Its from example_graphs.py, it should be fairly similar in concept.
-        #Throws all the data for each country (and their corresponding collumn) into a couple of panda.series, which we concat
-        #And then return as JSON
+		#Look familiar? Its from example_graphs.py, it should be fairly similar in concept.
+		#Throws all the data for each country (and their corresponding collumn) into a couple of panda.series, which we concat
+		#And then return as JSON
 
-        x = []
-        for xin in countries:
-            x.append(import_data.dt.loc[import_data.dt['Name'] == xin, [byY]].values) # Locates precice data in the database for the input
-            print(x)
-        print("aaaaa")
-        print(x)
-        # At the moment it adds an extra column name for each item int he list, need to delete that
-        
-        temp = pd.Series(x)
-
-        g = pd.concat([pd.Series(countries),temp], axis=1, join="inner") # Think this'll work?
-        print("aaaa")
-        print(g)
-        #g.reset_index(drop=True, inplace=True)
-        g.to_json()#Gonna need to test this
-        print(g.to_json())
-
+		x = []
+		for xin in countries:
+			x.append(import_data.dt.loc[import_data.dt['Name'] == xin, [byY]].values) # Locates precice data in the database for the input
+			#print(x)
+		#print(x)
+		count = 0
+		conversionList = [] # An empty list that we fill with the contents of each part of x
+		for f in x:
+			#print(x[count][0])
+			conversionList.append(x[count][0])
+			count = count + 1
+		temp = pd.Series(conversionList) # takes the cleaned version of x and makes it into a series
+		g = pd.concat([pd.Series(countries),temp], axis=1, join="inner") # Connects the two panda types in such a way that it is readable in to_json
+		#print(g.to_json())
+		self.fileChange(g)
+		#print(g)
+	
+	def fileChange(self, G):
+		return G.to_json()
+		#print(g.to_json())
