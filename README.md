@@ -21,15 +21,17 @@ victory (for charts)
 Grommet (For UI Components)
 
 [![React-CI/CD](https://github.com/Jack-Hartman/UoL-TSE-G34/actions/workflows/node.js.yml/badge.svg)](https://github.com/Jack-Hartman/UoL-TSE-G34/actions/workflows/node.js.yml)
+[![](https://data.jsdelivr.com/v1/package/npm/chart.js/badge)](https://www.jsdelivr.com/package/npm/chart.js)
 
 ## Back End:
 
 python3 main.py
 
 
-[![](https://data.jsdelivr.com/v1/package/npm/chart.js/badge)](https://www.jsdelivr.com/package/npm/chart.js)
-[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 [![Python-CI/CD](https://github.com/Jack-Hartman/UoL-TSE-G34/actions/workflows/python.yml/badge.svg)](https://github.com/Jack-Hartman/UoL-TSE-G34/actions/workflows/python.yml)
+[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
+
+
 
 
 
@@ -39,9 +41,8 @@ python3 main.py
 
 # Repo Stats
 [![GitHub contributors](https://img.shields.io/github/contributors/Jack-Hartman/UoL-TSE-G34.svg)](https://GitHub.com/Jack-Hartman/UoL-TSE-G34/graphs/contributors/)
-[![GitHub pull-requests](https://img.shields.io/github/issues-pr/Jack-Hartman/UoL-TSE-G34.svg)](https://GitHub.com/Jack-Hartman/UoL-TSE-G34/pull/)
-[![GitHub pull-requests closed](https://img.shields.io/github/issues-pr-closed/Jack-Hartman/UoL-TSE-G34.svg)](https://GitHub.com/Jack-Hartman/UoL-TSE-G34Jack-Hartman/UoL-TSE-G34/pull/)
-[![Only 32 Kb](https://badge-size.herokuapp.com/Naereen/StrapDown.js/master/strapdown.min.js)](https://github.com/Naereen/StrapDown.js/blob/master/strapdown.min.js)
+[![GitHub pull-requests](https://img.shields.io/github/issues-pr/Jack-Hartman/UoL-TSE-G34.svg)](https://GitHub.com/Jack-Hartman/UoL-TSE-G34/pulls/)
+[![GitHub pull-requests closed](https://img.shields.io/github/issues-pr-closed/Jack-Hartman/UoL-TSE-G34.svg)](https://GitHub.com/Jack-Hartman/UoL-TSE-G34/pulls/)
 
 
 
