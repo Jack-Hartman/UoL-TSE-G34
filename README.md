@@ -39,8 +39,8 @@ python3 main.py
 
 # Repo Stats
 [![GitHub contributors](https://img.shields.io/github/contributors/Jack-Hartman/UoL-TSE-G34.svg)](https://GitHub.com/Jack-Hartman/UoL-TSE-G34/graphs/contributors/)
-[![GitHub pull-requests](https://img.shields.io/github/issues-pr/Jack-Hartman/UoL-TSE-G34.svg)](https://GitHub.com/Jack-Hartman/UoL-TSE-G34/pull/)
-[![GitHub pull-requests closed](https://img.shields.io/github/issues-pr-closed/Jack-Hartman/UoL-TSE-G34.svg)](https://GitHub.com/Jack-Hartman/UoL-TSE-G34/pull/)
+[![GitHub pull-requests](https://img.shields.io/github/issues-pr/Jack-Hartman/UoL-TSE-G34.svg)](https://GitHub.com/Jack-Hartman/UoL-TSE-G34/pulls/)
+[![GitHub pull-requests closed](https://img.shields.io/github/issues-pr-closed/Jack-Hartman/UoL-TSE-G34.svg)](https://GitHub.com/Jack-Hartman/UoL-TSE-G34/pulls/)
 
 
 
