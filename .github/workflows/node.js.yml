@@ -1,0 +1,51 @@
+name: React-CI/CD
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+    - 'g34-covid-analyser/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+    - 'g34-covid-analyser/**'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    env:
+      working-directory: ./g34-covid-analyser
+
+    strategy:
+      matrix:
+        node-version: [15.x]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Cache Node.js modules
+      uses: actions/cache@v2
+      with:
+        path: ~/.npm
+        key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.OS }}-node-
+          ${{ runner.OS }}-
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Install dependencies
+      run: npm install
+      working-directory: ${{env.working-directory}}
+    - name: Build
+      run: CI='' npm run build
+      working-directory: ${{env.working-directory}}
+    - name: Deploy
+      uses: JamesIves/github-pages-deploy-action@4.1.0
+      with:
+        branch: gh-pages
+        folder: /
+
+       
