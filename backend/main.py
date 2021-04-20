@@ -1,6 +1,6 @@
 from flask import Flask
 from newsapi import NewsApiClient
-from flask_cors import CORS
+
 
 import import_data
 import user_interact
@@ -12,7 +12,7 @@ import datetime as DT
 
 app = Flask(__name__)
 newsapi = NewsApiClient(api_key='656d88bc51824b7b9b1a695745fdcef2')
-CORS(app)
+
 
 # /v2/top-headlines
 top_headlines = newsapi.get_top_headlines(q='bitcoin',
@@ -34,6 +34,12 @@ def defaultData():
         'continent': 'Europe',
         'Country': 'UK'
     }
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
 # /help command
 #testinput - input("Type /Help for commands: ")
 #if testinput == '/Help':
@@ -52,10 +58,9 @@ example_graphs.Data_To_JSON(["India"], "Cases - cumulative total")
 
 example_graphs.Test_Graph()
 
-if __name__ == '__main__':
-    app.run(debug=True)
-
 
 #Run the app.s
 #if __name__ == '__main__':
 #	app.run(host='localhost', debug=True)
+
+
