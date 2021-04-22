@@ -16,11 +16,9 @@ data = json.loads(WHO_DATA_SET.rtn_dt_json())
 
 app = Flask(__name__)
 
-@app.route('/api', methods=['GET'])
+@app.route('/worldwide', methods=['GET'])
 def index():
-    return {
-        'name': 'Hello World'
-    }
+    return data[0]
 
 @app.route('/defaultData', methods=['GET'])
 def defaultData():

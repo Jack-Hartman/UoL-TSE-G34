@@ -33,7 +33,24 @@ class App extends Component {
 			this.setState(state => ({
 				View: 'default'
 			}));
+
+			fetch('api')
+			.then(async res => {
+				const data = await res.json();
+
+				// Check for error response:
+				if (!res.ok) {
+					const error = (data && data.message) || res.statusText;
+					return Promise.reject(error);
+				}
+
+				console.log(res)
+		})
+		.catch(error => {
+			console.error('Error: ', error);
+		});
 		}, 3000);
+
 	}
 
 	getCurrentView() {
