@@ -9,35 +9,30 @@ import example_graphs
 import numpy as np
 import pandas as pd
 import datetime as DT 
+import json
 
-# app = Flask(__name__)
-# newsapi = NewsApiClient(api_key='656d88bc51824b7b9b1a695745fdcef2')
+WHO_DATA_SET = import_data.WHO_Data_Set() 
+data = json.loads(WHO_DATA_SET.rtn_dt_json())
 
+app = Flask(__name__)
 
-# # /v2/top-headlines
-# #top_headlines = newsapi.get_top_headlines(q='bitcoin',
-# #                                          sources='bbc-news,the-verge',
-# #                                          category='business',
-# #                                          language='en',
-# #                                          country='us')
+@app.route('/api', methods=['GET'])
+def index():
+    return {
+        'name': 'Hello World'
+    }
 
-# @app.route('/api', methods=['GET'])
-# def index():
-#     return {
-#         'name': 'Hello World'
-#     }
-
-# @app.route('/defaultData', methods=['GET'])
-# def defaultData():
-#     return {
-#         'names': ['Deaths / Recoveries', 'Information for each country in: ', 'Deaths / Recoveries / Living / Infected'],
-#         'continent': 'Europe',
-#         'Country': 'UK'
-#     }
+@app.route('/defaultData', methods=['GET'])
+def defaultData():
+    return {
+        'names': ['Deaths / Recoveries', 'Information for each country in: ', 'Deaths / Recoveries / Living / Infected'],
+        'continent': 'Europe',
+        'Country': 'UK'
+    }
 
 
-# if __name__ == '__main__':
-#     app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)
 
 
 # /help command
@@ -64,7 +59,4 @@ import datetime as DT
 # #	app.run(host='localhost', debug=True)
 
 
-my_class = import_data.WHO_Data_Set()
 
-my_class.rtn_dt_json()
-print('done')

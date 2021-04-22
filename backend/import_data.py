@@ -27,5 +27,5 @@ class WHO_Data_Set:
 		#print(dt.head(5))
 
 	def rtn_dt_json(self):
-		self.dt.to_json('./data.json', orient = "records", date_format = "epoch", double_precision = 10, force_ascii = True, date_unit = "ms", default_handler = None)
-		return('extracted')
+		return self.dt.to_json(orient = "records", date_format = "epoch", double_precision = 10, force_ascii = True, date_unit = "ms", default_handler = None)
+		
