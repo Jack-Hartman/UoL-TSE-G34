@@ -5,13 +5,9 @@ on:
     branches: [ main ]
     paths:
     - 'g34-covid-analyser/**'
-  pull_request:
-    branches: [ main ]
-    paths:
-    - 'g34-covid-analyser/**'
 
 jobs:
-  build:
+  build-and-deploy:
 
     runs-on: ubuntu-latest
     env:
