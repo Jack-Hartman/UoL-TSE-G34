@@ -6,14 +6,14 @@ on:
     paths:
     - 'g34-covid-analyser/**'
 
-defaults:
-  run:
-    working-directory: ./g34-covid-analyser
-
 jobs:
   build-and-deploy:
 
     runs-on: ubuntu-latest
+    
+    env:
+      working-directory: ./g34-covid-analyser
+
     strategy:
       matrix:
         node-version: [15.x]
@@ -24,6 +24,7 @@ jobs:
     - name: Cache Node.js modules
       uses: actions/cache@v2
       with:
+        working-directory: ${{env.working-directory}}
         path: ~/.npm
         key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
@@ -35,14 +36,16 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Install dependencies
       run: npm install
+      working-directory: ${{env.working-directory}}
     - name: Build
-      run: |
-        CI='' npm run build
-        ls
+      run: CI='' npm run build
+      working-directory: ${{env.working-directory}}
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@4.1.0
       with:
         branch: gh-pages
         folder: build
+        working-directory: ${{env.working-directory}}
+        
 
        
