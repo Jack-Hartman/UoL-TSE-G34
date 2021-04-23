@@ -10,7 +10,7 @@ jobs:
   build-and-deploy:
 
     runs-on: ubuntu-latest
-    
+
     env:
       working-directory: ./g34-covid-analyser
 
@@ -24,7 +24,6 @@ jobs:
     - name: Cache Node.js modules
       uses: actions/cache@v2
       with:
-        working-directory: ${{env.working-directory}}
         path: ~/.npm
         key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
@@ -44,8 +43,7 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@4.1.0
       with:
         branch: gh-pages
-        folder: build
-        working-directory: ${{env.working-directory}}
+        folder: ${{env.working-directory}}/build
         
 
        
