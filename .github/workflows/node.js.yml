@@ -6,13 +6,14 @@ on:
     paths:
     - 'g34-covid-analyser/**'
 
+defaults:
+  run:
+    working-directory: ./g34-covid-analyser
+
 jobs:
   build-and-deploy:
 
     runs-on: ubuntu-latest
-    env:
-      working-directory: ./g34-covid-analyser
-
     strategy:
       matrix:
         node-version: [15.x]
@@ -34,14 +35,12 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Install dependencies
       run: npm install
-      working-directory: ${{env.working-directory}}
     - name: Build
-      run: CI='' npm run build
-      working-directory: ${{env.working-directory}}
+      run: npm run build
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@4.1.0
       with:
         branch: gh-pages
-        folder: ../build
+        folder: ./build
 
        
