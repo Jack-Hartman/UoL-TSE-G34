@@ -38,13 +38,10 @@ jobs:
     - name: Build
       run: CI='' npm run build
       working-directory: ${{env.working-directory}}
-    - name: treats
-      run: ls
-      working-directory: ./
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@4.1.0
       with:
         branch: gh-pages
-        folder: build
+        folder: ../build
 
        
