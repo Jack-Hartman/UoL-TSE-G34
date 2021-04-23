@@ -36,11 +36,13 @@ jobs:
     - name: Install dependencies
       run: npm install
     - name: Build
-      run: CI='' npm run build
+      run: |
+        CI='' npm run build
+        ls
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@4.1.0
       with:
         branch: gh-pages
-        folder: ./build
+        folder: build
 
        
