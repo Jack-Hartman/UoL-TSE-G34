@@ -5,9 +5,13 @@ on:
     branches: [ main ]
     paths:
     - 'backend/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+    - 'backend/**'
 
 jobs:
-  build:
+  build-and-deploy:
 
     runs-on: ubuntu-latest
     env:
@@ -46,6 +50,7 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
       working-directory: ${{env.working-directory}}
     - name: Deploy files to remote
+      if: ${{ github.event_name == 'push'}}
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
         server: api.tse.jackhartman.dev

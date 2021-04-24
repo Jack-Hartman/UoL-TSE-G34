@@ -5,6 +5,10 @@ on:
     branches: [ main ]
     paths:
     - 'g34-covid-analyser/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+    - 'g34-covid-analyser/**'
 
 jobs:
   build-and-deploy:
@@ -40,6 +44,7 @@ jobs:
       run: CI='' npm run build
       working-directory: ${{env.working-directory}}
     - name: Deploy
+      if: ${{ github.event_name == 'push'}}
       uses: JamesIves/github-pages-deploy-action@4.1.0
       with:
         branch: gh-pages
