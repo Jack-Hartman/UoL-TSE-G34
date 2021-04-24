@@ -20,7 +20,7 @@ React (For UI)
 victory (for charts)
 Grommet (For UI Components)
 
-[![React-CI/CD](https://github.com/Jack-Hartman/UoL-TSE-G34/actions/workflows/node.js.yml/badge.svg)](https://github.com/Jack-Hartman/UoL-TSE-G34/actions/workflows/node.js.yml)
+[![React-CI/CD](https://github.com/Jack-Hartman/UoL-TSE-G34/actions/workflows/react.yml/badge.svg)](https://github.com/Jack-Hartman/UoL-TSE-G34/actions/workflows/react.yml)
 [![](https://data.jsdelivr.com/v1/package/npm/chart.js/badge)](https://www.jsdelivr.com/package/npm/chart.js)
 
 ## Back End:
