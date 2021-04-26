@@ -42,12 +42,13 @@ class WHO_Data_Set:
 		# print(input)
 		# for x in self.country_list:
 		# 	print(x)
+		index = 0
 		for i in self.country_list:
 			if input == i:
 				print('yay')
-				return input
+				return index
 			else:
+				index += 1
 				print('nay')
 
-		return 0
 			

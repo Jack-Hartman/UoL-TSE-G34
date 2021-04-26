@@ -30,7 +30,9 @@ def index():
     # return_data_index = WHO_DATA_SET.find_country_index(arg)
     # return data[return_data_index]
     country = request.args.get("country")
-    return WHO_DATA_SET.find_country_index(country)
+    index = WHO_DATA_SET.find_country_index(country)
+    rtn = data[index]
+    return rtn
 
 
 @app.route('/defaultData', methods=['GET'])
