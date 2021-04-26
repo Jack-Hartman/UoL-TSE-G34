@@ -22,7 +22,8 @@ const Worldwide = () => {
 
 
     useEffect(() => {
-        fetch('/worldwide').then((res) => {
+
+        fetch('/worldwide?country=Brazil').then((res) => {
             if (res.ok) {
                 console.log(res);
                 return res.json();

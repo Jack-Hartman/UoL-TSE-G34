@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import request
 from newsapi import NewsApiClient
 
 
@@ -16,15 +17,21 @@ data = json.loads(WHO_DATA_SET.rtn_dt_json())
 
 # Loop through
 # Look at countries to build an array of them.
-country_list = []
-for i in data:
-    country_list.append(i["Name"])
+
+WHO_DATA_SET.sortCountries(data)
 
 app = Flask(__name__)
 
 @app.route('/worldwide', methods=['GET'])
 def index():
-    return data[0]
+    # arg = request.args.get('country')
+    # print('arg')
+    # print(arg)
+    # return_data_index = WHO_DATA_SET.find_country_index(arg)
+    # return data[return_data_index]
+    country = request.args.get("country")
+    return WHO_DATA_SET.find_country_index(country)
+
 
 @app.route('/defaultData', methods=['GET'])
 def defaultData():
