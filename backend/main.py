@@ -14,6 +14,12 @@ import json
 WHO_DATA_SET = import_data.WHO_Data_Set() 
 data = json.loads(WHO_DATA_SET.rtn_dt_json())
 
+# Loop through
+# Look at countries to build an array of them.
+country_list = []
+for i in data:
+    country_list.append(i["Name"])
+
 app = Flask(__name__)
 
 @app.route('/worldwide', methods=['GET'])
