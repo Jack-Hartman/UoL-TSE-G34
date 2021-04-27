@@ -1,7 +1,7 @@
 from flask import Flask
 from flask import request
 from newsapi import NewsApiClient
-
+from default_json_data import Default_JSON_Data
 
 import import_data
 import user_interact
@@ -22,6 +22,11 @@ WHO_DATA_SET.sortCountries(data)
 
 app = Flask(__name__)
 
+# Functions
+def to_json(obj):
+    json_str = json.dumps(obj.__dict__)
+    return json.loads(json_str)
+
 @app.route('/worldwide', methods=['GET'])
 def index():
     # arg = request.args.get('country')
@@ -29,10 +34,18 @@ def index():
     # print(arg)
     # return_data_index = WHO_DATA_SET.find_country_index(arg)
     # return data[return_data_index]
+
+    # Get Country Data:
     country = request.args.get("country")
     index = WHO_DATA_SET.find_country_index(country)
-    rtn = data[index]
-    return rtn
+    country_rtn = data[index]
+
+    # Get Global Data:
+    global_rtn = data[0]
+
+    # Get Continental Data:
+    
+    return to_json(Default_JSON_Data(global_rtn, country_rtn))
 
 
 @app.route('/defaultData', methods=['GET'])
