@@ -22,4 +22,5 @@ class WHO_Data_Set:
 
 		# Prints top five rows of table
 		#print(dt.head(5))
-
+	def showDT(self):
+		return dt
