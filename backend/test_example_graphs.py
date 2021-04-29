@@ -2,10 +2,10 @@
 
 import unittest
 from example_graphs import *
+import example_graphs
 import import_data
 import numpy as np
 import pandas as pd
-
 #import User_Interact
 
 #class testData(unittest.User_Interact)
@@ -13,18 +13,14 @@ import pandas as pd
  #   def test_data(self)
   #      self.assertTrue()
 
-
-# For Import
-# Test data is imported, 
-# test it is accurate
-# 
-# For example_graphs
-# Test it is collecting expected information
-# Test for bogus entries (ask for data from mars or something)
 class test_graph(unittest.TestCase):
     
-    #def test_data(self):
-        # Will have a value if it has fetched the dataset
+    def test_data(self):
+        # Tests it outputs the data_to_json object, as it is turned into raw json later by other processes
+        import_data.WHO_Data_Set()
+        f = example_graphs.Data_To_JSON(["India"], "Cases - cumulative total")
+        self.assertIsInstance(f, Data_To_JSON) #  fixxx
 
     def test_durable(self):
-        self.assertRaises(TypeError, Data_To_JSON(["India"], "Cases - cumulative total")) 
+        #This should fail
+        self.assertRaises(IndexError, Data_To_JSON(["Mars"], "Cases - cumulative total")) 

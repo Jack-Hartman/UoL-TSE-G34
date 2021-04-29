@@ -1,7 +1,7 @@
 
 
 import unittest
-from example_graphs import *
+from import_data import *
 import numpy as np
 import pandas as pd
 
@@ -12,14 +12,6 @@ import pandas as pd
  #   def test_data(self)
   #      self.assertTrue()
 
-
-# For Import
-# Test data is imported, 
-# test it is accurate
-# 
-# For example_graphs
-# Test it is collecting expected information
-# Test for bogus entries (ask for data from mars or something)
 class test_data_return(unittest.TestCase):
     
     def test_runs(self):
@@ -34,7 +26,7 @@ class test_data_return(unittest.TestCase):
     def test_accurate2(self):
         # Find the blank value for the global who region
         temp = WHO_Data_Set().showDT()
-        f = temp.loc[temp['Name'] == 'Global', 'WHO Region'].to_json
-        str(f)
-        g = '{"0":{"0":"Global"}},"1":{"0":[""]}}'
-        self.assertEqual(f, g) 
+        f = str(temp.loc[temp['Name'] == 'Global', 'WHO Region'].values)
+        #str(f)
+        g = str([float("NAN")])
+        self.assertEqual(f, g) # Expecting NAN as the square is blank, changed to string for simplicity in conversion
