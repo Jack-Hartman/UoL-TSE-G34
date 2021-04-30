@@ -19,7 +19,7 @@ class App extends Component {
 	
 	constructor(props) {
 		super (props);
-		this.state = { View: 'loading'}
+		this.state = { View: 'loading', Data: 'null'}
 
 		// This binding is neccessary to make `this` work in the callback
 		this.handleAboutClick = this.handleAboutClick.bind(this);
@@ -29,11 +29,25 @@ class App extends Component {
 	}
 
 	componentDidMount() { // Runs after compoennt has been mounted
-		setTimeout(() => {
+		// setTimeout(() => {
+		// 	this.setState(state => ({
+		// 		View: 'default'
+		// 	}));
+		// }, 3000);
+
+		fetch('/worldwide?country=Brazil').then((res) => {
+            if (res.ok) {
+                console.log(res);
+                return res.json();
+            }
+        }).then(data => {
+			console.log(data)
 			this.setState(state => ({
-				View: 'default'
+				View: 'default',
+				Data: data
 			}));
-		}, 3000);
+			console.log(this.state.Data);
+		});
 
 	}
 
@@ -74,7 +88,7 @@ class App extends Component {
 		let ui;
 		
 		if (this.state.View === 'default') {
-			ui = <Default />
+			ui = <Default data={this.state.Data}/>
 		} else if (this.state.View === 'about') {
 			ui = <About />
 		} else if (this.state.View === 'loading') {

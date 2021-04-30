@@ -44,8 +44,10 @@ def index():
     global_rtn = data[0]
 
     # Get Continental Data:
+    countries_within_region = WHO_DATA_SET.find_countries_within_region(data, data[index]["WHO Region"])
     
-    return to_json(Default_JSON_Data(global_rtn, country_rtn))
+
+    return to_json(Default_JSON_Data(global_rtn, country_rtn, countries_within_region))
 
 
 @app.route('/defaultData', methods=['GET'])

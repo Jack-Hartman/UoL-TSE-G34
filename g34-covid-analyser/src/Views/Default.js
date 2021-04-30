@@ -13,7 +13,12 @@ import DragNdrop from '../Components/Parts/DragnDrop';
 import News from '../Components/Parts/News';
 
 class Default extends Component {
-
+	constructor(props) {
+		super (props);
+		let hi = 'hi';
+		console.log('default');
+		console.log(this.props.data);
+	}
     render() {
         return (
             <Container fluid style={{padding: '5px', backgroundColor: '#293742', alignSelf: 'center'}}>
@@ -26,7 +31,7 @@ class Default extends Component {
 					</Col>
 					<Col>
 						<Row>
-							<DefaultGraphs />
+							<DefaultGraphs data={this.props.data}/>
 						</Row>
 					</Col>
 				</Row>
