@@ -9,6 +9,7 @@ import React, { Component } from 'react'; // Import react.
 import Default from './Views/Default';
 import About from './Views/About';
 import Loading from './Views/Loading';
+import FindCountry from './Views/FindCountry';
 
 // Import Bootstrap Components (Import each component ont at a time to save space).
 import Navbar from 'react-bootstrap/Navbar';
@@ -19,13 +20,19 @@ class App extends Component {
 	
 	constructor(props) {
 		super (props);
-		this.state = { View: 'loading', Data: 'null'}
-
+		// Bind the state handler to the function.
+		this.handler = this.handler.bind(this);
+		this.state = { View: 'findCountry', Data: 'null', Home: 'Spain'}
+	
 		// This binding is neccessary to make `this` work in the callback
 		this.handleAboutClick = this.handleAboutClick.bind(this);
 		this.handleAccountClick = this.handleAccountClick.bind(this);
 		this.handleCreateClick = this.handleCreateClick.bind(this);
 		this.handleHomeClick = this.handleHomeClick.bind(this);
+		this.handleSetHomeClick = this.handleSetHomeClick.bind(this);
+
+
+
 	}
 
 	componentDidMount() { // Runs after compoennt has been mounted
@@ -35,20 +42,41 @@ class App extends Component {
 		// 	}));
 		// }, 3000);
 
-		fetch('/worldwide?country=Brazil').then((res) => {
-            if (res.ok) {
-                console.log(res);
-                return res.json();
-            }
-        }).then(data => {
-			console.log(data)
-			this.setState(state => ({
-				View: 'default',
-				Data: data
-			}));
-			console.log(this.state.Data);
-		});
+	}
 
+	componentDidUpdate() {
+		console.log('upadte');
+
+		
+	}
+
+	handler(arg) {
+		console.log(arg);
+
+		this.setState(state => ({
+			View: 'loading',
+			Home: arg
+		}), () => {
+			fetch(`/worldwide?country=${this.state.Home}`).then((res) => {
+				if (res.ok) {
+					console.log(res);
+					return res.json();
+				}
+			}).then(data => {
+				console.log(data)
+				this.setState(state => ({
+					View: 'default',
+					Data: data
+				}));
+				console.log(this.state.Data);
+			});
+		});
+	}
+	
+	stateHandler() {
+		this.setState(state => ({
+			View: 'loading'
+		}));
 	}
 
 	getCurrentView() {
@@ -67,6 +95,12 @@ class App extends Component {
 			View: 'create'
 		}));
 	}
+	
+	handleSetHomeClick() {
+		this.setState(state => ({
+			View: 'findCountry'
+		}));
+	}
 
 	handleAboutClick() {
 		this.setState(state => ({
@@ -83,16 +117,20 @@ class App extends Component {
 			View: 'default'
 		}));
 	}
+
 	
-	render () {	
+	render () {
+
 		let ui;
-		
+
 		if (this.state.View === 'default') {
 			ui = <Default data={this.state.Data}/>
 		} else if (this.state.View === 'about') {
 			ui = <About />
 		} else if (this.state.View === 'loading') {
 			ui = <Loading />
+		} else if (this.state.View === 'findCountry') {
+			ui = <FindCountry action={this.handler}/>
 		}
 
 		return (
@@ -102,7 +140,7 @@ class App extends Component {
 					<Nav className="mr-auto">
 						<Button variant="primary">Create</Button>
 						<Button variant="info" onClick={this.handleAboutClick}>About</Button>
-						<Button variant="danger">Account</Button>
+						<Button variant="info" onClick={this.handleSetHomeClick}>Set Home Country</Button>
 					</Nav>
 				</Navbar>
 				
@@ -116,3 +154,5 @@ class App extends Component {
 }
 
 export default App;
+
+

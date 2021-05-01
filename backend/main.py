@@ -2,6 +2,7 @@ from flask import Flask
 from flask import request
 from newsapi import NewsApiClient
 from default_json_data import Default_JSON_Data
+from countries import Countries
 
 import import_data
 import user_interact
@@ -49,6 +50,16 @@ def index():
 
     return to_json(Default_JSON_Data(global_rtn, country_rtn, countries_within_region))
 
+@app.route('/who-countries', methods=['GET'])
+def who_countries():
+    rtn_countries = []
+
+    for i in data:
+        rtn_countries.append(i["Name"])
+        print(i)
+
+    my_json = to_json(Countries(rtn_countries))
+    return my_json
 
 @app.route('/defaultData', methods=['GET'])
 def defaultData():
