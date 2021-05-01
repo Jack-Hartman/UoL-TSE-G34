@@ -1,17 +1,17 @@
 
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container'
 
 // Create a view where the user can select the country they're from.
 class FindCountry extends React.Component {
     
     constructor(props) {
         super (props);
-
-        this.countries = null;
+        this.state = { Countries: ['none'] };
     }
     
     componentDidMount() { //Runs after the component has been mounted
@@ -22,41 +22,27 @@ class FindCountry extends React.Component {
             }
         }).then(data => {
             console.log(data);
-            this.countries = data;
+            this.setState(state => ({
+                Countries: data.countries
+            }));
         });
     }
 
     render() {
-
+        console.log(this.state.Countries);
         return(
             <div>
-                <h1>BUtTTONTOTNOTNT</h1>
-                <Button onClick={() => { this.props.action('Brazil') }}>Push Me</Button>        
+                <h1>Select Which Country You're From</h1>   
+                <Container>
+                    {
+                        this.state.Countries.map((x) => {
+                            return <Button style={{ margin: '10px' }} onClick={() => { this.props.action(x) }}>{x}</Button>
+                        })
+                    }
+                </Container>
             </div>
         );
     }    
 }
 
 export default FindCountry;
-
-// //ParentA component
-// class ParentA extends React.Component {
-
-//     constructor(props) {
-//         super(props);
-//         var handleToUpdate  = this.handleToUpdate.bind(this);
-//         var arg1 = '';
-//     }
-
-//     handleToUpdate(someArg){
-//             alert('We pass argument from Child to Parent: ' + someArg);
-//             this.setState({arg1:someArg});
-//     }
-
-//     render() {
-//         var handleToUpdate  =   this.handleToUpdate;
-
-//         return (<div>
-//                     <ChildB handleToUpdate = {handleToUpdate.bind(this)} /></div>)
-//     }
-// }

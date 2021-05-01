@@ -65,7 +65,7 @@ function DragNdrop() {
 	
     return (
         <>
-            {
+            {/* {
                 list.items.map((i, i1) => (
                     <div style={{width: '20rem', backgroundColor: '#293742', alignContent: 'center', marginRight: '10px', marginTop: '10px' }} className={dragging?getStyles():"dndItem"} draggable onDragStart={(e) => {
                         handleDragStart(e, i1)
@@ -78,7 +78,7 @@ function DragNdrop() {
                         </Col>
                     </div>
                 ))
-            }
+            } */}
         </>
     );
 }
