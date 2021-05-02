@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react';
+import React from 'react';
 
 // Import Boootstrap components:
 import Container from 'react-bootstrap/Container';
@@ -7,22 +7,9 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 
 // Import victory charts:
-import { 
-    VictoryChart,
-    VictoryAxis,
-    VictoryTheme,
-    VictoryBar,
-    VictoryPie,
-    VictoryGroup
-} from 'victory';
+import VictoryPie from 'victory';
 
-// Import my Components:
-import DataGripCard from '../Card/Card';
-
-
-
-const graphicColor = ['#388087', '#6fb3b8', '#99FADC'];
-
+// For all of the chart colors.
 const colors = [
     [ '#388087', '#6fb3b8' ],
     [ '#5D7529', '#DBF7A0' ],
@@ -82,15 +69,7 @@ const colors = [
     [ '#906C35', '#74F6C4' ]
 ]
 
-
-
 const DefaultGraphs = (props) => {
-
-
-    const defaultData = [
-        {x: 'Deaths', y: 500},
-        {x: 'Recovereed', y: 500}
-    ]
 
     const chartTheme = {
         axis: {
@@ -102,23 +81,6 @@ const DefaultGraphs = (props) => {
           },
         },
       };
-
-    const [dataToDisplay, setGraphicData] = useState(defaultData);
-    // let homeData = props.data.home_data;
-    // console.log(homeData);
-
-    // defaultData[0].y = props.data.home_data["Deaths - cumulative total"];
-    // defaultData[1].y = props.data.home_data["Cases - cumulative total"];
-
-    // useEffect(() => {
-    //     fetch('/defaultData').then((res) => {
-    //         if (res.ok) {
-    //             return res.json();
-    //         }
-    //     }).then(data => console.log(data));
-
-    //     setGraphicData(data); // Setting the data that we want to display
-    // }, []);
 
     return (
         <Container fluid style={{ backgroundColor: '#293742', alignSelf: 'center'}}>
@@ -157,7 +119,7 @@ const DefaultGraphs = (props) => {
                                                 fillOpacity: 1
                                             }
                                         }}
-                                        colorScale={graphicColor} 
+                                        colorScale={colors[0]} 
                                         innerRadius={50} 
                                         theme={chartTheme}
                                     />
@@ -208,7 +170,7 @@ const DefaultGraphs = (props) => {
                                                 fillOpacity: 1
                                             }
                                         }}
-                                        colorScale={graphicColor} 
+                                        colorScale={colors[0]} 
                                         innerRadius={50} 
                                         theme={chartTheme}
                                     />

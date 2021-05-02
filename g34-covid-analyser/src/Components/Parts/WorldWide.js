@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 // Import Boootstrap components:
 import Container from 'react-bootstrap/Container';
@@ -9,20 +9,12 @@ import Card from 'react-bootstrap/Card';
 // Import Victory:
 import { 
     VictoryChart,
-    VictoryArea,
     VictoryTooltip, 
     VictoryLabel,
-    VictoryPie,
     VictoryBar,
     VictoryAxis,
-    VictoryStack, 
-    VictoryPortal, 
-    VictoryGroup, 
-    VictoryScatter 
+    VictoryStack
 } from 'victory';
-
-const graphicColor = ['#80FFBE', '#6FDEC6', '#3FA18B'];
-
 
 class CustomLabel extends React.Component {
     render() {
