@@ -23,6 +23,9 @@ import DataGripCard from '../Card/Card';
 
 const graphicColor = ['#388087', '#6fb3b8', '#99FADC'];
 
+
+
+
 const DefaultGraphs = (props) => {
 
 
@@ -164,35 +167,60 @@ const DefaultGraphs = (props) => {
                         </Card>
                     </div>    
                 </Col>
-                <Col>
-                    <div style={{
-                        width: '20rem', 
-                        backgroundColor: '#293742', 
-                        alignContent: 'center', 
-                        marginRight: '10px', 
-                        marginTop: '10px' 
-                    }}>
-                        <Card className='text-white' style={{ width: '20rem', backgroundColor:  '#202B33'}}>
-                            <Card.Body>
-                                <Card.Title>Deaths / Recoveries / Living / Infected</Card.Title>
-                                <Card.Subtitle className='mb-2 text-muted'>UK</Card.Subtitle>
-                                <Card.Body style={{ padding: '2px'}}>
-                                {/* <Graph>{ this.props.type }</Graph> */}
-                                    
-                                </Card.Body>
-                                <Card.Text>
-                                Some quick example text incase 
-                                the user may want to put notes here. 
-                                This feature can easily be taken out 
-                                but I implemented it just incase we had 
-                                a use for it.
-                                </Card.Text>
-                                <Card.Link href='#'>Enlarge</Card.Link>
-                                <Card.Link href='#'>Edit</Card.Link>
-                            </Card.Body>
-                        </Card>
-                    </div>
-                </Col>
+                <Row>
+                    <Col>
+                        <h2>All countries data within home region:</h2>
+                    </Col>
+                </Row>
+                {
+                    props.data.region_data.map((x) => {
+                        return (
+                            <Col>
+                                <div style={{
+                                    width: '20rem', 
+                                    backgroundColor: '#293742', 
+                                    alignContent: 'center', 
+                                    marginRight: '10px', 
+                                    marginTop: '10px' 
+                                }}>
+                                    <Card className='text-white' style={{ width: '20rem', backgroundColor:  '#202B33'}}>
+                                        <Card.Body>
+                                            <Card.Title>{x.Name}</Card.Title>
+                                            <Card.Subtitle className='mb-2 text-muted'>Deaths / Cases</Card.Subtitle>
+                                            <Card.Body style={{ padding: '2px'}}>
+                                            <VictoryPie 
+                                                animate={{ easing: 'exp', duration: 1000 }} 
+                                                data={[
+                                                    { x: 'Deaths', y: x["Deaths - cumulative total"]},
+                                                    { x: 'Cases', y: x["Cases - cumulative total"] }
+                                                ]} 
+                                                width={250} 
+                                                height={250}
+                                                style={{ 
+                                                    labels: { fontSize: 12, fill: "white"},
+                                                    data: {
+                                                        fillOpacity: 1
+                                                    }
+                                                }}
+                                                colorScale={graphicColor} 
+                                                innerRadius={50} 
+                                                theme={chartTheme}
+                                            />
+                                                
+                                            </Card.Body>
+                                            <Card.Text>
+                                                <h4>Cases: { x["Cases - cumulative total"] }</h4>
+                                                <h4>Deaths: { x["Deaths - cumulative total"] }</h4>
+                                            </Card.Text>
+                                            <Card.Link href='#'>Enlarge</Card.Link>
+                                            <Card.Link href='#'>Edit</Card.Link>
+                                        </Card.Body>
+                                    </Card>
+                                </div>
+                            </Col>
+                        )
+                    })
+                }
             </Row>
         </Container>
     )
