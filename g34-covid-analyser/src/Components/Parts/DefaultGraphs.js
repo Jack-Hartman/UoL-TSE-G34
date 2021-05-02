@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 
 // Import victory charts:
-import VictoryPie from 'victory';
+import { VictoryPie } from 'victory';
 
 // For all of the chart colors.
 const colors = [
