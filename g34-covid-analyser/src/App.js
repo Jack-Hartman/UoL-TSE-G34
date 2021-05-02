@@ -10,6 +10,7 @@ import Default from './Views/Default';
 import About from './Views/About';
 import Loading from './Views/Loading';
 import FindCountry from './Views/FindCountry';
+import Compare from './Views/Compare';
 
 // Import Bootstrap Components (Import each component ont at a time to save space).
 import Navbar from 'react-bootstrap/Navbar';
@@ -22,11 +23,11 @@ class App extends Component {
 		super (props);
 		// Bind the state handler to the function.
 		this.handler = this.handler.bind(this);
-		this.state = { View: 'findCountry', Data: 'null', Home: 'Spain'}
+		this.state = { View: 'findCountry', Data: 'null', Home: 'null'}
 	
 		// This binding is neccessary to make `this` work in the callback
 		this.handleAboutClick = this.handleAboutClick.bind(this);
-		this.handleAccountClick = this.handleAccountClick.bind(this);
+		//this.handleAccountClick = this.handleAccountClick.bind(this);
 		this.handleCreateClick = this.handleCreateClick.bind(this);
 		this.handleHomeClick = this.handleHomeClick.bind(this);
 		this.handleSetHomeClick = this.handleSetHomeClick.bind(this);
@@ -54,7 +55,7 @@ class App extends Component {
 					}));
 					console.log(this.state.Data);
 				});
-			}, 3000);
+			}, 1000);
 		});
 	}
 	
@@ -118,14 +119,22 @@ class App extends Component {
 			ui = <Loading />
 		} else if (this.state.View === 'findCountry') {
 			ui = <FindCountry action={this.handler}/>
+		} else if (this.state.View === 'compare') {
+			ui = <Compare />
 		}
 
 		return (
 			<>
 				<Navbar style={{ backgroundColor: '#30404D' }} className='text-white'>
-					<Navbar.Brand onClick={this.handleHomeClick}>G34 Covid Analyser</Navbar.Brand>
+					<Navbar.Brand onClick={this.handleHomeClick}>{() => {
+						if (this.state.Home === 'null') {
+							return 'G34 Covid Analyser'
+						} else {
+							return this.state.Home
+						}
+					}}</Navbar.Brand>
 					<Nav className="mr-auto">
-						<Button style={{ paddingRight: '5px' }} variant="primary">Compare</Button>
+						<Button style={{ paddingRight: '5px' }} variant="primary" onClick={this.handleCompareClick}>Compare</Button>
 						<Button style={{ paddingRight: '5px' }} variant="info" onClick={this.handleAboutClick}>About</Button>
 						<Button style={{ paddingRight: '5px' }} variant="info" onClick={this.handleSetHomeClick}>Set Home Country</Button>
 					</Nav>
