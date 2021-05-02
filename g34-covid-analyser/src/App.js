@@ -30,20 +30,7 @@ class App extends Component {
 		this.handleCreateClick = this.handleCreateClick.bind(this);
 		this.handleHomeClick = this.handleHomeClick.bind(this);
 		this.handleSetHomeClick = this.handleSetHomeClick.bind(this);
-
-	}
-
-	componentDidMount() { // Runs after compoennt has been mounted
-		// setTimeout(() => {
-		// 	this.setState(state => ({
-		// 		View: 'default'
-		// 	}));
-		// }, 3000);
-
-	}
-
-	componentDidUpdate() {
-		console.log('upadte');
+		this.handleCompareClick = this.handleCompareClick.bind(this);
 	}
 
 	handler(arg) {
@@ -106,8 +93,10 @@ class App extends Component {
 		}));
 	}
 
-	handleAccountClick() {
-
+	handleCompareClick() {
+		this.setState(state => ({
+			View: 'compare'
+		}));
 	}
 
 	handleHomeClick() {
@@ -136,9 +125,9 @@ class App extends Component {
 				<Navbar style={{ backgroundColor: '#30404D' }} className='text-white'>
 					<Navbar.Brand onClick={this.handleHomeClick}>G34 Covid Analyser</Navbar.Brand>
 					<Nav className="mr-auto">
-						<Button variant="primary">Create</Button>
-						<Button variant="info" onClick={this.handleAboutClick}>About</Button>
-						<Button variant="info" onClick={this.handleSetHomeClick}>Set Home Country</Button>
+						<Button style={{ paddingRight: '5px' }} variant="primary">Compare</Button>
+						<Button style={{ paddingRight: '5px' }} variant="info" onClick={this.handleAboutClick}>About</Button>
+						<Button style={{ paddingRight: '5px' }} variant="info" onClick={this.handleSetHomeClick}>Set Home Country</Button>
 					</Nav>
 				</Navbar>
 				
