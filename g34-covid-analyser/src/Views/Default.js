@@ -23,24 +23,20 @@ class Default extends Component {
         return (
             <Container fluid style={{padding: '5px', backgroundColor: '#293742', alignSelf: 'center'}}>
 				<Row style={{ width: '100%'}}>
-					<Col>
+					{/* <Col>
 						<Worldwide />
 						<br />
 						<br />
 						<br />
-					</Col>
-					<Col>
+					</Col> */}
+					{/* <Col>
 						<Row>
 							<DefaultGraphs data={this.props.data}/>
 						</Row>
-					</Col>
+					</Col> */}
+					<DefaultGraphs style={{ alignSelf: 'center' }} data={this.props.data}/>
 				</Row>
-				<Row>
-					<News />
-				</Row>
-				{/* <Row>
-					<DragNdrop />
-				</Row> */}
+				<Worldwide style={{width: '90%'}} data={this.props.data}/>
 			</Container>
         );
     }

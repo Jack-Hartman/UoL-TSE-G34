@@ -21,7 +21,7 @@ import DataGripCard from '../Card/Card';
 
 
 
-const graphicColor = ['#388087', '#6fb3b8'];
+const graphicColor = ['#388087', '#6fb3b8', '#99FADC'];
 
 const DefaultGraphs = (props) => {
 
@@ -114,43 +114,55 @@ const DefaultGraphs = (props) => {
                     </div>
                 </Col>
                 <Col>
-                    <div style={{
-                        width: '20rem', 
-                        backgroundColor: '#293742', 
-                        alignContent: 'center', 
-                        marginRight: '10px', 
-                        marginTop: '10px' 
-                    }}>
+                <div style={
+                        {
+                            width: '20rem', 
+                            backgroundColor: '#293742', 
+                            alignContent: 'center',
+                            marginTop: '10px' 
+                        }
+                    }>
                         <Card className='text-white' style={{ width: '20rem', backgroundColor:  '#202B33'}}>
                             <Card.Body>
-                                <Card.Title>Information for each country in 'users continent '</Card.Title>
-                                <Card.Subtitle className='mb-2 text-muted'>UK</Card.Subtitle>
+                                <Card.Title>Global Deaths / Cases / Population </Card.Title>
+                                <Card.Subtitle className='mb-2 text-muted'>Global</Card.Subtitle>
                                 <Card.Body style={{ padding: '2px'}}>
                                 {/* <Graph>{ this.props.type }</Graph> */}
-                                    <VictoryChart>
-                                        <VictoryGroup offset={20}
-                                            colorScale={"qualitative"}
-                                        >
-                                            <VictoryBar
-                                            data={[{ x: 'Deaths', y: 1 }, { x: 'Cases', y: 2 }, { x: 'Vaccines', y: 5 }]}
-                                            />
-                                            <VictoryBar
-                                            data={[{ x: 'Deaths', y: 2 }, { x: 'Cases', y: 1 }, { x: 'Vaccines', y: 7 }]}
-                                            />
-                                            <VictoryBar
-                                            data={[{ x: 'Deaths', y: 3 }, { x: 'Cases', y: 4 }, { x: 'Vaccines', y: 9 }]}
-                                            />
-                                        </VictoryGroup>
-                                    </VictoryChart>
+                                    {/* <VictoryChart
+                                        // adding the material theme provided with Victory
+                                        theme={VictoryTheme.material}
+                                    > */}
+                                        
+                                    <VictoryPie 
+                                        animate={{ easing: 'exp', duration: 1000 }} 
+                                        data={[
+                                            { x: 'Deaths', y: props.data.global_data["Deaths - cumulative total"]},
+                                            { x: 'Cases', y: props.data.global_data["Cases - cumulative total"] }
+                                        ]} 
+                                        width={250} 
+                                        height={250}
+                                        style={{ 
+                                            labels: { fontSize: 12, fill: "white"},
+                                            data: {
+                                                fillOpacity: 1
+                                            }
+                                        }}
+                                        colorScale={graphicColor} 
+                                        innerRadius={50} 
+                                        theme={chartTheme}
+                                    />
+                                    {/* </VictoryChart> */}
                                 </Card.Body>
                                 <Card.Text>
-                                Data for the infection rate, cases, deaths, vaccines given.
+                                    <p>Death and recoveries for the country</p>
+                                    <h6 color='#388087'>Deaths: {props.data.home_data["Deaths - cumulative total"]}</h6>
+                                    <h6 color='#6fb3b8'>Cases: {props.data.home_data["Cases - cumulative total"]}</h6>
                                 </Card.Text>
                                 <Card.Link href='#'>Enlarge</Card.Link>
                                 <Card.Link href='#'>Edit</Card.Link>
                             </Card.Body>
                         </Card>
-                    </div>
+                    </div>    
                 </Col>
                 <Col>
                     <div style={{

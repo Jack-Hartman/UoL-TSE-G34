@@ -31,8 +31,6 @@ class App extends Component {
 		this.handleHomeClick = this.handleHomeClick.bind(this);
 		this.handleSetHomeClick = this.handleSetHomeClick.bind(this);
 
-
-
 	}
 
 	componentDidMount() { // Runs after compoennt has been mounted
@@ -46,8 +44,6 @@ class App extends Component {
 
 	componentDidUpdate() {
 		console.log('upadte');
-
-		
 	}
 
 	handler(arg) {
@@ -57,19 +53,21 @@ class App extends Component {
 			View: 'loading',
 			Home: arg
 		}), () => {
-			fetch(`/worldwide?country=${this.state.Home}`).then((res) => {
-				if (res.ok) {
-					console.log(res);
-					return res.json();
-				}
-			}).then(data => {
-				console.log(data)
-				this.setState(state => ({
-					View: 'default',
-					Data: data
-				}));
-				console.log(this.state.Data);
-			});
+			setTimeout(() => {
+				fetch(`/worldwide?country=${this.state.Home}`).then((res) => {
+					if (res.ok) {
+						console.log(res);
+						return res.json();
+					}
+				}).then(data => {
+					console.log(data)
+					this.setState(state => ({
+						View: 'default',
+						Data: data
+					}));
+					console.log(this.state.Data);
+				});
+			}, 3000);
 		});
 	}
 	

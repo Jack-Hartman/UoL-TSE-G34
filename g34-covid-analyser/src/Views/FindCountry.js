@@ -36,7 +36,7 @@ class FindCountry extends React.Component {
                 <Container>
                     {
                         this.state.Countries.map((x) => {
-                            return <Button style={{ margin: '10px' }} onClick={() => { this.props.action(x) }}>{x}</Button>
+                            return <Button variant="info" style={{ margin: '10px' }} onClick={() => { this.props.action(x) }}>{x}</Button>
                         })
                     }
                 </Container>

@@ -9,7 +9,12 @@ import Card from 'react-bootstrap/Card';
 // Import Victory:
 import { 
     VictoryChart,
-    VictoryArea, 
+    VictoryArea,
+    VictoryTooltip, 
+    VictoryLabel,
+    VictoryPie,
+    VictoryBar,
+    VictoryAxis,
     VictoryStack, 
     VictoryPortal, 
     VictoryGroup, 
@@ -18,19 +23,70 @@ import {
 
 const graphicColor = ['#80FFBE', '#6FDEC6', '#3FA18B'];
 
-const Worldwide = () => {
+
+class CustomLabel extends React.Component {
+    render() {
+      return (
+        <g>
+          <VictoryLabel {...this.props}/>
+          <VictoryTooltip
+            {...this.props}
+            x={200} y={250}
+            orientation="top"
+            pointerLength={0}
+            cornerRadius={50}
+            flyoutWidth={100}
+            flyoutHeight={100}
+            flyoutStyle={{ fill: "black" }}
+          />
+        </g>
+      );
+    }
+  }
+  
+  CustomLabel.defaultEvents = VictoryTooltip.defaultEvents;
 
 
-    useEffect(() => {
 
-        fetch('/worldwide?country=Brazil').then((res) => {
-            if (res.ok) {
-                console.log(res);
-                return res.json();
-            }
-        }).then(data => console.log(data));
+const Worldwide = (props) => {
 
-    }, []);
+    let deaths = [];
+    let cases = [];
+
+    props.data.region_data.forEach(element => {
+        console.log(element.Name);
+        console.log(element["Cases - cumulative total"]);
+
+        deaths.push({ x: element.Name, y: element["Deaths - cumulative total"]});
+        
+    });
+
+    props.data.region_data.forEach(element => {
+        cases.push({ x: element.Name, y: element["Cases - cumulative total"]});
+    });
+
+    console.log(deaths);
+    console.log(cases);
+
+    let newData = [deaths, cases];
+    console.log(newData);
+
+    const myDataset = [
+        [
+            { x: "england", y: 1 },
+            { x: "scotland", y: 2 },
+            { x: "ireland", y: 3 },
+            { x: "france", y: 2 },
+            { x: "spain", y: 1 }
+        ],[
+            { x: "england", y: 5 },
+            { x: "scotland", y: 8 },
+            { x: "ireland", y: 5 },
+            { x: "france", y: 9 },
+            { x: "spain", y: 20 }
+        ]
+        
+    ];
 
     return (
         <Container fluid style={{padding: '10px', backgroundColor: '#293742', alignSelf: 'center'}}>
@@ -40,64 +96,39 @@ const Worldwide = () => {
                     backgroundColor: '#293742', 
                 }  
             }>
-                <Card  className='text-white' style={{ backgroundColor: '#202B33'}}>
+                <Card  className='text-white' style={{ backgroundColor: '#202B33', width: '500px'}}>
                     <Card.Body>
                         <Card.Title>Population / Infecfcted / Deaths</Card.Title>
                         <Card.Subtitle className='mb-2 text-muted'>World Wide</Card.Subtitle>
                         <Card.Body style={{ padding: '2px'}}>
-                            <VictoryChart scale={{ x: "time" }} width={400} height={400} animate={1000}>
-                                {/* <VictoryStack colorScale="warm"> */}
-                                <VictoryStack colorScale={graphicColor}>
-                                    <VictoryGroup
-                                        data={[
-                                            { x: 'Jan 2020', y: 2 },
-                                            { x: 'Feb 2020', y: 3 },
-                                            { x: 'March 2020', y: 5 },
-                                            { x: 'April 2020', y: 4 },
-                                            { x: 'May 2020', y: 6 }
-                                        ]}
-                                    >
-                                    <VictoryArea interpolation={'natural'} />
-                                    <VictoryPortal>
-                                        <VictoryScatter
-                                        style={{ data: { fill: "black" } }}
-                                        />
-                                    </VictoryPortal>
-                                    </VictoryGroup>
-                                    <VictoryGroup
-                                    data={[
-                                        { x: 'Jan 2020', y: 2 },
-                                        { x: 'Feb 2020', y: 3 },
-                                        { x: 'March 2020', y: 5 },
-                                        { x: 'April 2020', y: 4 },
-                                        { x: 'May 2020', y: 6 }
-                                    ]}
-                                    >
-                                    <VictoryArea interpolation={'natural'} />
-                                    <VictoryPortal>
-                                        <VictoryScatter
-                                        style={{ data: { fill: "black" } }}
-                                        />
-                                    </VictoryPortal>
-                                    </VictoryGroup>
-                                    <VictoryGroup
-                                    data={[
-                                        { x: 'Jan 2020', y: 2 },
-                                        { x: 'Feb 2020', y: 3 },
-                                        { x: 'March 2020', y: 5 },
-                                        { x: 'April 2020', y: 4 },
-                                        { x: 'May 2020', y: 6 }
-                                    ]}
-                                    >
-                                    <VictoryArea interpolation={'natural'} />
-                                    <VictoryPortal>
-                                        <VictoryScatter
-                                        style={{ data: { fill: "black" } }}
-                                        />
-                                    </VictoryPortal>
-                                    </VictoryGroup>
+                            {/* <VictoryChart width={400} height={400} animate={1000}>
+                                
+                            </VictoryChart> */}
+                            {/* <VictoryPie
+                                style={{ labels: { fill: "white" } }}
+                                innerRadius={100}
+                                labelRadius={120}
+                                labels={({ datum }) => `# ${datum.x}`}
+                                labelComponent={<CustomLabel />}
+                                data={data}
+                            /> */}
+                            <VictoryChart height={400} width={400}
+                                domainPadding={{ x: 30, y: 20 }} 
+                            >
+                                <VictoryStack
+                                colorScale={["blue", "tomato"]}
+                                >
+                                {newData.map((data, i) => {
+                                    return <VictoryBar data={data} key={i}/>;
+                                })}
                                 </VictoryStack>
-                                </VictoryChart>
+                                <VictoryAxis dependentAxis
+                                tickFormat={(tick) => `${tick}%`}
+                                />
+                                <VictoryAxis
+                                tickFormat={["a", "b", "c", "d", "e"]}
+                                />
+                            </VictoryChart>
                         </Card.Body>
                         <Card.Text>
                         Some quick example text incase 
@@ -116,3 +147,7 @@ const Worldwide = () => {
 }
 
 export default Worldwide;
+
+
+  
+  
