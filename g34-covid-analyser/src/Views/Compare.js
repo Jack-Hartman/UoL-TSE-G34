@@ -8,6 +8,7 @@ import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
+import Table from 'react-bootstrap/Table'; 
 
 import {
     VictoryChart,
@@ -132,11 +133,11 @@ class Compare extends Component {
             <Container fluid>
                 <Row>
                     <Col xs={2}>
-                    <Card className='scrollable' style={{ width: '14rem', height: '50rem' }}>
-                        <ListGroup variant="flush">
+                    <Card className='scrollable' style={{ width: '14rem', height: '50rem', backgroundColor:  '#202B33', color: 'white', borderColor: '#A7FFF4' }}>
+                        <ListGroup  variant="flush">
                             {
                                 this.state.Countries.map((x) => {
-                                    return <ListGroup.Item onClick={() => this.listClick(x)}>{x}</ListGroup.Item>
+                                    return <ListGroup.Item style={{ backgroundColor:  '#202B33', color: 'white', borderColor: '#A7FFF4'}} onClick={() => this.listClick(x)}>{x}</ListGroup.Item>
                                 })
                             }
                         </ListGroup>
@@ -145,8 +146,39 @@ class Compare extends Component {
                     </Col>
                     <Col xs={10}>
                         <Container>
+
+                        <Card style={{ width: '60rem', marginBottom: '20px' }}>
+                                <Card.Header as="h5">Key and data</Card.Header>
+                                    <Card.Body>
+                                        <Table striped bordered hover>
+                                            <thead>
+                                                <tr>
+                                                <th>Color</th>
+                                                <th>Country</th>
+                                                <th>Cases</th>
+                                                <th>Deaths</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {
+                                                    this.state.SelectedCountries.map((country, index) => {
+                                                        return (
+                                                            <tr>
+                                                                <td style={{backgroundColor: this.colors[index + 10][0], color: 'white'}}>{ index + 1 }</td>
+                                                                <td>{ country.Name }</td>
+                                                                <td>{ country["Cases - cumulative total"] }</td>
+                                                                <td>{ country["Deaths - cumulative total"] }</td>
+                                                            </tr>
+                                                        )
+                                                    })
+                                                }
+                                            </tbody>
+                                        </Table>
+                                    </Card.Body>
+                            </Card>
+
                             <Card style={{ width: '60rem' }}>
-                                <Card.Header as="h5">Comparison</Card.Header>
+                                <Card.Header as="h5"> Cases Comparison</Card.Header>
                                     <Card.Body>
                                         The key with all assosiated colours goes here.
                                     </Card.Body>
@@ -169,28 +201,28 @@ class Compare extends Component {
                                 </Card.Body>
                             </Card>
 
-                            <Card style={{ width: '60rem' }}>
-                        <Card.Header as="h5">Comparison</Card.Header>
-                            <Card.Body>
-                                The key with all assosiated colours goes here.
-                            </Card.Body>
-                            <Card.Body>
-                                <Card.Title>Deaths Compared</Card.Title>
-                                <VictoryChart padding={{ left: 80, bottom: 40, right: 20 }} domainPadding={{ x: 50 }}>
-                                    <VictoryGroup offset={20}
-                                    >
-                                        
-                                        {
-                                            this.state.SelectedCountries.map((country, index) => {
-                                                return <VictoryBar style={{ data: { fill: this.colors[index + 5][0] } }} data={[{ x: country.Name, y: country["Deaths - cumulative total"]} ]}/>
-                                            })
-                                        }
+                            <Card style={{ width: '60rem', marginTop: '20px' }}>
+                                <Card.Header as="h5">Deaths Comparison</Card.Header>
+                                    <Card.Body>
+                                        The key with all assosiated colours goes here.
+                                    </Card.Body>
+                                    <Card.Body>
+                                        <Card.Title>Deaths Compared</Card.Title>
+                                        <VictoryChart padding={{ left: 80, bottom: 40, right: 20 }} domainPadding={{ x: 50 }}>
+                                            <VictoryGroup offset={20}
+                                            >
+                                                
+                                                {
+                                                    this.state.SelectedCountries.map((country, index) => {
+                                                        return <VictoryBar style={{ data: { fill: this.colors[index + 10][0] } }} data={[{ x: country.Name, y: country["Deaths - cumulative total"]} ]}/>
+                                                    })
+                                                }
 
-                                    </VictoryGroup>
-                                </VictoryChart>
-                                
-                        </Card.Body>
-                        </Card>
+                                            </VictoryGroup>
+                                        </VictoryChart>
+                                        
+                                </Card.Body>
+                            </Card>
                         </Container>
                     </Col>
                 </Row>
