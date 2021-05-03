@@ -8,7 +8,6 @@ subprocess.call(['pip3', 'install', '-r', 'requirements.txt'])
 from flask import Flask
 from flask_cors import CORS
 from flask import request
-from newsapi import NewsApiClient
 from default_json_data import Default_JSON_Data
 from countries import Countries
 
