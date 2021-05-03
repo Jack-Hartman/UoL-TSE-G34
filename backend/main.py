@@ -1,4 +1,12 @@
+from decouple import config
+
+import os
+import sys
+import subprocess
+subprocess.call(['pip3', 'install', '-r', 'requirements.txt'])
+
 from flask import Flask
+from flask_cors import CORS
 from flask import request
 from newsapi import NewsApiClient
 from default_json_data import Default_JSON_Data
@@ -22,14 +30,22 @@ data = json.loads(WHO_DATA_SET.rtn_dt_json())
 WHO_DATA_SET.sortCountries(data)
 
 app = Flask(__name__)
+CORS(app)
 
 # Functions
 def to_json(obj):
     json_str = json.dumps(obj.__dict__)
     return json.loads(json_str)
+    
+@app.route('/', methods=['GET'])
+def index():
+    return {
+	    'message': 'API is operational',
+        'status': '200'
+    }
 
 @app.route('/worldwide', methods=['GET'])
-def index():
+def worldwide():
     # arg = request.args.get('country')
     # print('arg')
     # print(arg)
@@ -68,9 +84,19 @@ def defaultData():
         'continent': 'Europe',
         'Country': 'UK'
     }
+    
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>', methods=['GET'])
+def catch_all(path):
+    return {
+        'status': '404',
+	    'message': 'Request not found'
+    }
 
-
-if __name__ == '__main__':
+if config('environment') == "production":
+    print("Hey")
+    app.run()
+elif __name__ == '__main__':
     app.run(debug=True)
 
 
