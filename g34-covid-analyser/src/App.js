@@ -9,6 +9,8 @@ import React, { Component } from 'react'; // Import react.
 import Default from './Views/Default';
 import About from './Views/About';
 import Loading from './Views/Loading';
+import FindCountry from './Views/FindCountry';
+import Compare from './Views/Compare';
 
 // Import Bootstrap Components (Import each component ont at a time to save space).
 import Navbar from 'react-bootstrap/Navbar';
@@ -19,21 +21,48 @@ class App extends Component {
 	
 	constructor(props) {
 		super (props);
-		this.state = { View: 'loading'}
-
+		// Bind the state handler to the function.
+		this.handler = this.handler.bind(this);
+		this.state = { View: 'findCountry', Data: 'null', Home: 'null'}
+	
 		// This binding is neccessary to make `this` work in the callback
 		this.handleAboutClick = this.handleAboutClick.bind(this);
-		this.handleAccountClick = this.handleAccountClick.bind(this);
+		//this.handleAccountClick = this.handleAccountClick.bind(this);
 		this.handleCreateClick = this.handleCreateClick.bind(this);
 		this.handleHomeClick = this.handleHomeClick.bind(this);
+		this.handleSetHomeClick = this.handleSetHomeClick.bind(this);
+		this.handleCompareClick = this.handleCompareClick.bind(this);
 	}
 
-	componentDidMount() { // Runs after compoennt has been mounted
-		setTimeout(() => {
-			this.setState(state => ({
-				View: 'default'
-			}));
-		}, 3000);
+	handler(arg) {
+		console.log(arg);
+
+		this.setState(state => ({
+			View: 'loading',
+			Home: arg
+		}), () => {
+			setTimeout(() => {
+				fetch(`/worldwide?country=${this.state.Home}`).then((res) => {
+					if (res.ok) {
+						console.log(res);
+						return res.json();
+					}
+				}).then(data => {
+					console.log(data)
+					this.setState(state => ({
+						View: 'default',
+						Data: data
+					}));
+					console.log(this.state.Data);
+				});
+			}, 1000);
+		});
+	}
+	
+	stateHandler() {
+		this.setState(state => ({
+			View: 'loading'
+		}));
 	}
 
 	getCurrentView() {
@@ -52,6 +81,12 @@ class App extends Component {
 			View: 'create'
 		}));
 	}
+	
+	handleSetHomeClick() {
+		this.setState(state => ({
+			View: 'findCountry'
+		}));
+	}
 
 	handleAboutClick() {
 		this.setState(state => ({
@@ -59,8 +94,10 @@ class App extends Component {
 		}));
 	}
 
-	handleAccountClick() {
-
+	handleCompareClick() {
+		this.setState(state => ({
+			View: 'compare'
+		}));
 	}
 
 	handleHomeClick() {
@@ -68,26 +105,38 @@ class App extends Component {
 			View: 'default'
 		}));
 	}
+
 	
-	render () {	
+	render () {
+
 		let ui;
-		
+
 		if (this.state.View === 'default') {
-			ui = <Default />
+			ui = <Default data={this.state.Data}/>
 		} else if (this.state.View === 'about') {
 			ui = <About />
 		} else if (this.state.View === 'loading') {
 			ui = <Loading />
+		} else if (this.state.View === 'findCountry') {
+			ui = <FindCountry action={this.handler}/>
+		} else if (this.state.View === 'compare') {
+			ui = <Compare />
 		}
 
 		return (
 			<>
 				<Navbar style={{ backgroundColor: '#30404D' }} className='text-white'>
-					<Navbar.Brand onClick={this.handleHomeClick}>G34 Covid Analyser</Navbar.Brand>
+					<Navbar.Brand onClick={this.handleHomeClick}>{() => {
+						if (this.state.Home === 'null') {
+							return 'G34 Covid Analyser'
+						} else {
+							return this.state.Home
+						}
+					}}</Navbar.Brand>
 					<Nav className="mr-auto">
-						<Button variant="primary">Create</Button>
-						<Button variant="info" onClick={this.handleAboutClick}>About</Button>
-						<Button variant="danger">Account</Button>
+						<Button style={{ paddingRight: '5px' }} variant="primary" onClick={this.handleCompareClick}>Compare</Button>
+						<Button style={{ paddingRight: '5px' }} variant="info" onClick={this.handleAboutClick}>About</Button>
+						<Button style={{ paddingRight: '5px' }} variant="info" onClick={this.handleSetHomeClick}>Set Home Country</Button>
 					</Nav>
 				</Navbar>
 				
@@ -101,3 +150,5 @@ class App extends Component {
 }
 
 export default App;
+
+
