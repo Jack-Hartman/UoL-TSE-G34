@@ -58,6 +58,6 @@ jobs:
         password: ${{ secrets.FTP_PASS }}
         server-dir: /home/tse/
         local-dir: ${{env.working-directory}}/
-        exclude: .env*
+        exclude: .env
      
       
