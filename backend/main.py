@@ -94,7 +94,6 @@ def catch_all(path):
     }
 
 if config('environment') == "production":
-    print("Hey")
     app.run()
 elif __name__ == '__main__':
     app.run(debug=True)

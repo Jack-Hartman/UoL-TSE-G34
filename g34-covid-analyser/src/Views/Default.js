@@ -12,8 +12,6 @@ import Worldwide from '../Components/Parts/WorldWide';
 class Default extends Component {
 	constructor(props) {
 		super (props);
-		console.log('default');
-		console.log(this.props.data);
 	}
     render() {
         return (
