@@ -11,7 +11,7 @@ on:
     - 'g34-covid-analyser/**'
 
 jobs:
-  build-and-deploy:
+  react-build:
 
     runs-on: ubuntu-latest
 
