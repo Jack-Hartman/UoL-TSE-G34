@@ -42,7 +42,7 @@ class App extends Component {
 			Home: arg
 		}), () => {
 			setTimeout(() => {
-				fetch(`/worldwide?country=${this.state.Home}`).then((res) => {
+				fetch(`${process.env.REACT_APP_API_LOC}/worldwide?country=${this.state.Home}`).then((res) => {
 					if (res.ok) {
 						console.log(res);
 						return res.json();

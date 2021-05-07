@@ -89,7 +89,7 @@ class Compare extends Component {
     }
 
     componentDidMount() { //Runs after the component has been mounted
-        fetch('/who-countries').then((res) => {
+        fetch(`${process.env.REACT_APP_API_LOC}/who-countries`).then((res) => {
             if (res.ok) {
                 console.log(res);
                 return res.json();
@@ -104,7 +104,7 @@ class Compare extends Component {
 
     listClick(arg) {
         console.log(`List click: ${arg}`);
-        fetch(`/worldwide?country=${arg}`).then((res) => {
+        fetch(`${process.env.REACT_APP_API_LOC}/worldwide?country=${arg}`).then((res) => {
             if (res.ok) {
                 console.log(res);
                 return res.json();

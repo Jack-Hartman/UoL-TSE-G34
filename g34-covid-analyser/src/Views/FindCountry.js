@@ -15,13 +15,11 @@ class FindCountry extends React.Component {
     }
     
     componentDidMount() { //Runs after the component has been mounted
-        fetch('/who-countries').then((res) => {
+        fetch(`${process.env.REACT_APP_API_LOC}/who-countries`).then((res) => {
             if (res.ok) {
-                console.log(res);
                 return res.json();
             }
         }).then(data => {
-            console.log(data);
             this.setState(state => ({
                 Countries: data.countries
             }));
