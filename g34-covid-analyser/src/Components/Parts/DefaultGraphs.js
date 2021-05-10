@@ -88,8 +88,11 @@ const DefaultGraphs = (props) => {
         'Cumulative total per 100000 population', 
         'Newly reported in last 24 hours', 
         'Newly repoted in last 7 days'
-    ]
-    
+    ];
+
+    console.log('Default Graphs');
+    console.log(dataChoice[props.retrievalType]);
+
     return (
         <Container fluid style={{ backgroundColor: '#293742', alignSelf: 'center'}}>
             <Row>
