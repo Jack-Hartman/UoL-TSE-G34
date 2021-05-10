@@ -28,7 +28,7 @@ class Default extends Component {
 							<DefaultGraphs data={this.props.data}/>
 						</Row>
 					</Col> */}
-					<DefaultGraphs style={{ alignSelf: 'center' }} data={this.props.data}/>
+					<DefaultGraphs style={{ alignSelf: 'center' }} data={this.props.data} retrievalType={this.props.retrievalType}/>
 				</Row>
 				<Worldwide style={{width: '90%'}} data={this.props.data}/>
 			</Container>

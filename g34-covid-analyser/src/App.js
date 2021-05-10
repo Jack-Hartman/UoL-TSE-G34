@@ -16,6 +16,8 @@ import Compare from './Views/Compare';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/Button';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
 class App extends Component {
 	
@@ -23,7 +25,7 @@ class App extends Component {
 		super (props);
 		// Bind the state handler to the function.
 		this.handler = this.handler.bind(this);
-		this.state = { View: 'findCountry', Data: 'null', Home: 'null'}
+		this.state = { View: 'findCountry', Data: 'null', Home: 'null', RetrievalType: 0}
 		
 		this.fetchURLS = ['process.env.REACT_APP_API_LOC', 'http://127.0.0.1:5000']
 		this.isProduction = 1;
@@ -35,6 +37,13 @@ class App extends Component {
 		this.handleHomeClick = this.handleHomeClick.bind(this);
 		this.handleSetHomeClick = this.handleSetHomeClick.bind(this);
 		this.handleCompareClick = this.handleCompareClick.bind(this);
+
+		// Dropdown clicks:
+		this.cumulativeTotalClick = this.cumulativeTotalClick.bind(this);
+		this.cumulativeTotalPerPop = this.cumulativeTotalPerPop.bind(this);
+		this.reportedInPastDay = this.reportedInPastDay.bind(this);
+		this.reportedInPastWeek = this.reportedInPastWeek.bind(this);
+		this.reportedInPastWeekPerPop = this.reportedInPastWeekPerPop.bind(this);
 	}
 
 	handler(arg) {
@@ -109,13 +118,42 @@ class App extends Component {
 		}));
 	}
 
-	
+	cumulativeTotalClick() {
+		this.setState(state => ({
+			RetrievalType: 0
+		}));
+	}
+
+	cumulativeTotalPerPop() {
+		this.setState(state => ({
+			RetrievalType: 1
+		}));
+	}
+
+	reportedInPastDay() {
+		this.setState(state => ({
+			RetrievalType: 2
+		}));
+	}
+
+	reportedInPastWeek() {
+		this.setState(state => ({
+			RetrievalType: 3
+		}));
+	}
+
+	reportedInPastWeekPerPop() {
+		this.setState(state => ({
+			RetrievalType: 4
+		}));
+	}
+
 	render () {
 
 		let ui;
 
 		if (this.state.View === 'default') {
-			ui = <Default data={this.state.Data} urls={this.fetchURLS} production={this.isProduction}/>
+			ui = <Default data={this.state.Data} urls={this.fetchURLS} production={this.isProduction} retrievalType={this.state.RetrievalType}/>
 		} else if (this.state.View === 'about') {
 			ui = <About />
 		} else if (this.state.View === 'loading') {
@@ -140,6 +178,14 @@ class App extends Component {
 						<Button style={{ paddingRight: '5px' }} variant="primary" onClick={this.handleCompareClick}>Compare</Button>
 						<Button style={{ paddingRight: '5px' }} variant="info" onClick={this.handleAboutClick}>About</Button>
 						<Button style={{ paddingRight: '5px' }} variant="info" onClick={this.handleSetHomeClick}>Set Home Country</Button>
+						<DropdownButton id="dropdown-basic-button" title="Select your option">
+							<Dropdown.Item href="#/action-1" onClick={this.reportedInPastDay}>Newly Reported in last 24 Hours</Dropdown.Item>
+							<Dropdown.Item href="#/action-2" onClick={this.reportedInPastWeek}>Newly Reported in last 7 days</Dropdown.Item>
+							<Dropdown.Item onClick={this.reportedInPastWeekPerPop}>Newly Reported in last 7 days per 100000 population</Dropdown.Item>
+							<Dropdown.Item onClick={this.cumulativeTotalClick}>Cumulative total</Dropdown.Item>
+							<Dropdown.Item onClick={this.cumulativeTotalPerPop}>Cumulative total per 100000 population</Dropdown.Item>
+							<Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+						</DropdownButton>
 					</Nav>
 				</Navbar>
 				

@@ -5,8 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
+
 
 // Import victory charts:
 import { VictoryPie } from 'victory';
@@ -91,7 +90,6 @@ const DefaultGraphs = (props) => {
         'Newly repoted in last 7 days'
     ]
     
-
     return (
         <Container fluid style={{ backgroundColor: '#293742', alignSelf: 'center'}}>
             <Row>
@@ -194,24 +192,6 @@ const DefaultGraphs = (props) => {
                             </Card.Body>
                         </Card>
                     </div>    
-                </Col>
-                <Col>
-                    <Card className='text-white' style={{ width: '40rem', backgroundColor:  '#202B33'}}>
-                        <Card.Body>
-                            <Card.Title>Currently Selected: { dataChoice[0] }</Card.Title>
-                            <Card.Body style={{ padding: '2px'}}>
-                                <h3>Select what data parameter you want: </h3>
-                                <DropdownButton id="dropdown-basic-button" title="Select your option">
-                                    <Dropdown.Item href="#/action-1">Newly Reported in last 24 Hours</Dropdown.Item>
-                                    <Dropdown.Item href="#/action-2">Newly Reported in last 7 days</Dropdown.Item>
-                                    <Dropdown.Item>Newly Reported in last 7 days per 100000 population</Dropdown.Item>
-                                    <Dropdown.Item>Cumulative total</Dropdown.Item>
-                                    <Dropdown.Item>Cumulative total per 100000 population</Dropdown.Item>
-                                    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                                </DropdownButton>
-                            </Card.Body>
-                        </Card.Body>
-                    </Card>
                 </Col>
                 <Row>
                     <Col>
