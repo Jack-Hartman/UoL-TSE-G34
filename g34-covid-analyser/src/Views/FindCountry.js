@@ -12,6 +12,12 @@ class FindCountry extends React.Component {
     constructor(props) {
         super (props);
         this.state = { Countries: ['none'] };
+
+        if (props.production == 1) {
+            this.url = props.urls[1];
+        } else {
+            this.url = props.urls[0];
+        }
     }
     
     componentDidMount() { //Runs after the component has been mounted
