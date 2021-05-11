@@ -27,9 +27,6 @@ class App extends Component {
 		this.handler = this.handler.bind(this);
 		this.state = { View: 'findCountry', Data: 'null', Home: 'null', RetrievalType: 0}
 		
-		this.fetchURLS = ['process.env.REACT_APP_API_LOC', 'http://127.0.0.1:5000']
-		this.isProduction = 1;
-		
 		// This binding is neccessary to make `this` work in the callback
 		this.handleAboutClick = this.handleAboutClick.bind(this);
 		//this.handleAccountClick = this.handleAccountClick.bind(this);
@@ -54,7 +51,7 @@ class App extends Component {
 			Home: arg
 		}), () => {
 			setTimeout(() => {
-				fetch(`${this.fetchURLS[1]}/worldwide?country=${this.state.Home}`).then((res) => {
+				fetch(`${process.env.REACT_APP_API_LOC}/worldwide?country=${this.state.Home}`).then((res) => {
 					if (res.ok) {
 						console.log(res);
 						return res.json();
@@ -153,15 +150,15 @@ class App extends Component {
 		let ui;
 
 		if (this.state.View === 'default') {
-			ui = <Default data={this.state.Data} urls={this.fetchURLS} production={this.isProduction} retrievalType={this.state.RetrievalType}/>
+			ui = <Default data={this.state.Data} production={this.isProduction} retrievalType={this.state.RetrievalType}/>
 		} else if (this.state.View === 'about') {
 			ui = <About />
 		} else if (this.state.View === 'loading') {
 			ui = <Loading />
 		} else if (this.state.View === 'findCountry') {
-			ui = <FindCountry action={this.handler}  urls={this.fetchURLS} production={this.isProduction}/>
+			ui = <FindCountry action={this.handler}  production={this.isProduction}/>
 		} else if (this.state.View === 'compare') {
-			ui = <Compare  urls={this.fetchURLS} production={this.isProduction} retrievalType={this.state.RetrievalType}/>
+			ui = <Compare production={this.isProduction} retrievalType={this.state.RetrievalType}/>
 		}
 
 		return (

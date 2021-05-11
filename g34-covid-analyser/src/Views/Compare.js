@@ -25,14 +25,6 @@ class Compare extends Component {
 
         this.state = { Countries: ['none'], SelectedCountries: [] };
 
-        this.url = '';
-        
-        if (props.production == 1) {
-            this.url = props.urls[1];
-        } else {
-            this.url = props.urls[0];
-        }
-
         // For all of the chart colors.
         this.colors = [
             [ '#388087', '#6fb3b8' ],
