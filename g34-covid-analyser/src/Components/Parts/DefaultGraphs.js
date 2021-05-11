@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-
+import Jumbotron from 'react-bootstrap/Jumbotron';
 
 // Import victory charts:
 import { VictoryPie } from 'victory';
@@ -96,26 +96,29 @@ const DefaultGraphs = (props) => {
     return (
         <Container fluid style={{ backgroundColor: '#293742', alignSelf: 'center'}}>
             <Row>
-                <Col>
-                    <div style={
-                        {
-                            width: '20rem', 
-                            backgroundColor: '#293742', 
-                            alignContent: 'center',
-                            marginTop: '10px' 
-                        }
-                    }>
-                        <Card className='text-white' style={{ width: '20rem', backgroundColor:  '#202B33'}}>
-                            <Card.Body>
-                                <Card.Title>Deaths / Recoveries</Card.Title>
-                                <Card.Subtitle className='mb-2 text-muted'>{props.data.home_data.Name}</Card.Subtitle>
-                                <Card.Body style={{ padding: '2px'}}>
-                                {/* <Graph>{ this.props.type }</Graph> */}
-                                    {/* <VictoryChart
-                                        // adding the material theme provided with Victory
-                                        theme={VictoryTheme.material}
-                                    > */}
-                                        
+            <Container>
+                    <Jumbotron className="text-white" style={{ backgroundColor:  '#202B33' }}>
+                        <h1>Welcome to G34 Covid Analyser</h1>
+                        { /* This is for the local cases and deaths */ }
+                        <Row style={{ marginBottom:'10px' }}>
+                            <Col>
+
+                            </Col>
+                            <Col xs={6}>
+                                <Card style={{ backgroundColor: '#193038'}}>
+                                    <Card.Body>
+                                        <p>You are currently viewing the data in this mode: {dataChoice[props.retrievalType]}.</p>
+                                    </Card.Body>
+                                </Card>
+                            </Col>
+                            <Col>
+
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <h3>{ props.data.home_data.Name }</h3>
+                                <div className="jumbo-charts">
                                     <VictoryPie 
                                         animate={{ easing: 'exp', duration: 1000 }} 
                                         data={[
@@ -134,37 +137,17 @@ const DefaultGraphs = (props) => {
                                         innerRadius={50} 
                                         theme={chartTheme}
                                     />
-                                    {/* </VictoryChart> */}
-                                </Card.Body>
-                                <Card.Text>
-                                    <p>Death and recoveries for the country</p>
-                                    <h6 color='#388087'>Deaths: {props.data.home_data["Deaths - cumulative total"]}</h6>
-                                    <h6 color='#6fb3b8'>Cases: {props.data.home_data["Cases - cumulative total"]}</h6>
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-                    </div>
-                </Col>
-                <Col>
-                <div style={
-                        {
-                            width: '20rem', 
-                            backgroundColor: '#293742', 
-                            alignContent: 'center',
-                            marginTop: '10px' 
-                        }
-                    }>
-                        <Card className='text-white' style={{ width: '20rem', backgroundColor:  '#202B33'}}>
-                            <Card.Body>
-                                <Card.Title>Global Deaths / Cases / Population </Card.Title>
-                                <Card.Subtitle className='mb-2 text-muted'>Global</Card.Subtitle>
-                                <Card.Body style={{ padding: '2px'}}>
-                                {/* <Graph>{ this.props.type }</Graph> */}
-                                    {/* <VictoryChart
-                                        // adding the material theme provided with Victory
-                                        theme={VictoryTheme.material}
-                                    > */}
-                                        
+                                </div>
+                                <Card style={{ backgroundColor: '#193038'}}>
+                                    <Card.Body>
+                                        <h6 color='#388087'>Deaths: {props.data.home_data["Deaths - cumulative total"]}</h6>
+                                        <h6 color='#6fb3b8'>Cases: {props.data.home_data["Cases - cumulative total"]}</h6>
+                                    </Card.Body>
+                                </Card>
+                            </Col>
+                            <Col>
+                                <h3>Global</h3>
+                                <div className="jumbo-charts">
                                     <VictoryPie 
                                         animate={{ easing: 'exp', duration: 1000 }} 
                                         data={[
@@ -183,24 +166,21 @@ const DefaultGraphs = (props) => {
                                         innerRadius={50} 
                                         theme={chartTheme}
                                     />
-                                    {/* </VictoryChart> */}
-                                </Card.Body>
-                                <Card.Text>
-                                    <p>Death and recoveries for the country</p>
-                                    <h6 color='#388087'>Deaths: {props.data.home_data["Deaths - cumulative total"]}</h6>
-                                    <h6 color='#6fb3b8'>Cases: {props.data.home_data["Cases - cumulative total"]}</h6>
-                                </Card.Text>
-                                <Card.Link href='#'>Enlarge</Card.Link>
-                                <Card.Link href='#'>Edit</Card.Link>
-                            </Card.Body>
-                        </Card>
-                    </div>    
-                </Col>
-                <Row>
-                    <Col>
-                        <h2>All countries data within home region:</h2>
-                    </Col>
-                </Row>
+                                </div>
+                                <Card style={{ backgroundColor: '#193038'}}>
+                                    <Card.Body>
+                                        <h6 color='#388087'>Deaths: {props.data.home_data["Deaths - cumulative total"]}</h6>
+                                        <h6 color='#6fb3b8'>Cases: {props.data.home_data["Cases - cumulative total"]}</h6>
+                                    </Card.Body>
+                                </Card>
+                            </Col>
+                        </Row>
+                        { /* This is for the global cases and deaths */ }
+                    </Jumbotron>
+                </Container>
+            </Row>
+            <Row>
+                
                 {
                     props.data.region_data.map((x, x1) => {
                         return (

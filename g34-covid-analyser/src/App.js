@@ -175,9 +175,9 @@ class App extends Component {
 						}
 					}}</Navbar.Brand>
 					<Nav className="mr-auto">
-						<Button style={{ paddingRight: '5px' }} variant="primary" onClick={this.handleCompareClick}>Compare</Button>
-						<Button style={{ paddingRight: '5px' }} variant="info" onClick={this.handleAboutClick}>About</Button>
-						<Button style={{ paddingRight: '5px' }} variant="info" onClick={this.handleSetHomeClick}>Set Home Country</Button>
+						<Button className="navButton" style={{ paddingRight: '5px' }} variant="primary" onClick={this.handleCompareClick}>Compare</Button>
+						<Button className="navButton" style={{ paddingRight: '5px' }} variant="info" onClick={this.handleAboutClick}>About</Button>
+						<Button className="navButton" style={{ paddingRight: '5px' }} variant="info" onClick={this.handleSetHomeClick}>Set Home Country</Button>
 						<DropdownButton id="dropdown-basic-button" title="Select your option">
 							<Dropdown.Item href="#/action-1" onClick={this.reportedInPastDay}>Newly Reported in last 24 Hours</Dropdown.Item>
 							<Dropdown.Item href="#/action-2" onClick={this.reportedInPastWeek}>Newly Reported in last 7 days</Dropdown.Item>
