@@ -23,18 +23,19 @@ class App extends Component {
 	
 	constructor(props) {
 		super (props);
-		// Bind the state handler to the function.
-		this.handler = this.handler.bind(this);
+		
 		this.state = { View: 'findCountry', Data: 'null', Home: 'null', RetrievalType: 0}
 		
 		// This binding is neccessary to make `this` work in the callback
 		this.handleAboutClick = this.handleAboutClick.bind(this);
-		//this.handleAccountClick = this.handleAccountClick.bind(this);
 		this.handleCreateClick = this.handleCreateClick.bind(this);
 		this.handleHomeClick = this.handleHomeClick.bind(this);
 		this.handleSetHomeClick = this.handleSetHomeClick.bind(this);
 		this.handleCompareClick = this.handleCompareClick.bind(this);
-
+		
+		// Bind the state handler to the function.
+		this.handler = this.handler.bind(this);
+		
 		// Dropdown clicks:
 		this.cumulativeTotalClick = this.cumulativeTotalClick.bind(this);
 		this.cumulativeTotalPerPop = this.cumulativeTotalPerPop.bind(this);
@@ -50,7 +51,9 @@ class App extends Component {
 			View: 'loading',
 			Home: arg
 		}), () => {
+			// Set timeout for loading animation.
 			setTimeout(() => {
+				// Fetch the main chunck of data for the application.
 				fetch(`${process.env.REACT_APP_API_LOC}/worldwide?country=${this.state.Home}`).then((res) => {
 					if (res.ok) {
 						console.log(res);
@@ -68,6 +71,7 @@ class App extends Component {
 		});
 	}
 	
+	// This handles the loading and data retrieval animation.
 	stateHandler() {
 		this.setState(state => ({
 			View: 'loading'
@@ -78,6 +82,7 @@ class App extends Component {
 		return this.state;
 	}
 
+	// Click event functions:
 	handleNavClick(destination) {
 		// Need to see what the value is:
 		this.setState(state => ({ // set the state.
@@ -147,6 +152,7 @@ class App extends Component {
 
 	render () {
 
+		// This handler tell the application which view to display as this is a single page application:
 		let ui;
 
 		if (this.state.View === 'default') {

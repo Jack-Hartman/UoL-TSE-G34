@@ -82,7 +82,8 @@ const DefaultGraphs = (props) => {
           },
         },
       };
-
+    
+    // This is used to tell the user for the time frame of the data being displayed.
     let dataChoice = [
         'Cumulative total', 
         'Cumulative total per 100000 population', 
@@ -90,6 +91,7 @@ const DefaultGraphs = (props) => {
         'Newly repoted in last 7 days'
     ];
 
+    // This is for the json requests.
     let jsonDataChoice = {
         cases: [
             'Cases - cumulative total',
