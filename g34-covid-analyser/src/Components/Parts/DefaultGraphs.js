@@ -90,8 +90,22 @@ const DefaultGraphs = (props) => {
         'Newly repoted in last 7 days'
     ];
 
-    console.log('Default Graphs');
-    console.log(dataChoice[props.retrievalType]);
+    let jsonDataChoice = {
+        cases: [
+            'Cases - cumulative total',
+            'Cases - cumulative total per 100000 population',
+            'Cases - newly reported in last 24 hours',
+            'Cases - newly reported in last 7 days',
+            'Cases - newly reported in last 7 days per 100000 population'
+        ],
+        deaths: [
+            'Deaths - cumulative total',
+            'Deaths - cumulative total per 100000 population',
+            'Deaths - newly reported in last 24 hours',
+            'Deaths - newly reported in last 7 days',
+            'Deaths - newly reported in last 7 days per 100000 population'
+        ]
+    }
 
     return (
         <Container fluid style={{ backgroundColor: '#293742', alignSelf: 'center'}}>
@@ -122,8 +136,8 @@ const DefaultGraphs = (props) => {
                                     <VictoryPie 
                                         animate={{ easing: 'exp', duration: 1000 }} 
                                         data={[
-                                            { x: 'Deaths', y: props.data.home_data["Deaths - cumulative total"]},
-                                            { x: 'Cases', y: props.data.home_data["Cases - cumulative total"] }
+                                            { x: 'Deaths', y: props.data.home_data[jsonDataChoice.deaths[props.retrievalType]]},
+                                            { x: 'Cases', y: props.data.home_data[jsonDataChoice.cases[props.retrievalType]] }
                                         ]} 
                                         width={250} 
                                         height={250}
@@ -140,8 +154,8 @@ const DefaultGraphs = (props) => {
                                 </div>
                                 <Card style={{ backgroundColor: '#193038'}}>
                                     <Card.Body>
-                                        <h6 color='#388087'>Deaths: {props.data.home_data["Deaths - cumulative total"]}</h6>
-                                        <h6 color='#6fb3b8'>Cases: {props.data.home_data["Cases - cumulative total"]}</h6>
+                                        <h6 color='#388087'>Deaths: {props.data.home_data[jsonDataChoice.deaths[props.retrievalType]]}</h6>
+                                        <h6 color='#6fb3b8'>Cases: {props.data.home_data[jsonDataChoice.cases[props.retrievalType]]}</h6>
                                     </Card.Body>
                                 </Card>
                             </Col>
@@ -151,8 +165,8 @@ const DefaultGraphs = (props) => {
                                     <VictoryPie 
                                         animate={{ easing: 'exp', duration: 1000 }} 
                                         data={[
-                                            { x: 'Deaths', y: props.data.global_data["Deaths - cumulative total"]},
-                                            { x: 'Cases', y: props.data.global_data["Cases - cumulative total"] }
+                                            { x: 'Deaths', y: props.data.home_data[jsonDataChoice.deaths[props.retrievalType]]},
+                                            { x: 'Cases', y: props.data.home_data[jsonDataChoice.cases[props.retrievalType]] }
                                         ]} 
                                         width={250} 
                                         height={250}
@@ -169,8 +183,8 @@ const DefaultGraphs = (props) => {
                                 </div>
                                 <Card style={{ backgroundColor: '#193038'}}>
                                     <Card.Body>
-                                        <h6 color='#388087'>Deaths: {props.data.home_data["Deaths - cumulative total"]}</h6>
-                                        <h6 color='#6fb3b8'>Cases: {props.data.home_data["Cases - cumulative total"]}</h6>
+                                        <h6 color='#388087'>Deaths: {props.data.home_data[jsonDataChoice.deaths[props.retrievalType]]}</h6>
+                                        <h6 color='#6fb3b8'>Cases: {props.data.home_data[jsonDataChoice.cases[props.retrievalType]]}</h6>
                                     </Card.Body>
                                 </Card>
                             </Col>
@@ -201,7 +215,7 @@ const DefaultGraphs = (props) => {
                                                 animate={{ easing: 'exp', duration: 1000 }} 
                                                 data={[
                                                     { x: 'Deaths', y: x["Deaths - cumulative total"]},
-                                                    { x: 'Cases', y: x["Cases - cumulative total"] }
+                                                    { x: 'Cases', y: x[jsonDataChoice.cases[props.retrievalType]] }
                                                 ]} 
                                                 width={250} 
                                                 height={250}
@@ -218,8 +232,8 @@ const DefaultGraphs = (props) => {
                                                 
                                             </Card.Body>
                                             <Card.Text>
-                                                <h4>Cases: { x["Cases - cumulative total"] }</h4>
-                                                <h4>Deaths: { x["Deaths - cumulative total"] }</h4>
+                                                <h4>Cases: { x[jsonDataChoice.cases[props.retrievalType]] }</h4>
+                                                <h4>Deaths: { x[jsonDataChoice.deaths[props.retrievalType]] }</h4>
                                             </Card.Text>
                                             <Card.Link href='#'>Enlarge</Card.Link>
                                             <Card.Link href='#'>Edit</Card.Link>
