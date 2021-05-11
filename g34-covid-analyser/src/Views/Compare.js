@@ -23,9 +23,9 @@ class Compare extends Component {
     constructor(props) {
         super (props);
 
+        // Setup the states for the countries:
         this.state = { Countries: ['none'], SelectedCountries: [] };
 
-        
         // For all of the chart colors.
         this.colors = [
             [ '#388087', '#6fb3b8' ],
@@ -86,16 +86,54 @@ class Compare extends Component {
             [ '#906C35', '#74F6C4' ]
         ]
 
+        // This sets the charts axis labels to the color white:
+        this.chartTheme = {
+            axis: {
+                style: {
+                    tickLabels: {
+                        fill: 'white',
+                    }
+                }
+            }
+        }
+
+        // This is used to tell the user the timeframe for the data, not for the json requests.
+        this.dataChoice = [
+            'Cumulative total', 
+            'Cumulative total per 100000 population', 
+            'Newly reported in last 24 hours', 
+            'Newly repoted in last 7 days'
+        ];
+
+        // Stores the specific json requests for the data.
+        this.jsonDataChoice = {
+            cases: [
+                'Cases - cumulative total',
+                'Cases - cumulative total per 100000 population',
+                'Cases - newly reported in last 24 hours',
+                'Cases - newly reported in last 7 days',
+                'Cases - newly reported in last 7 days per 100000 population'
+            ],
+            deaths: [
+                'Deaths - cumulative total',
+                'Deaths - cumulative total per 100000 population',
+                'Deaths - newly reported in last 24 hours',
+                'Deaths - newly reported in last 7 days',
+                'Deaths - newly reported in last 7 days per 100000 population'
+            ]
+        }
+
+        // Bind the clear countries button to enable state change from the function.
+        this.clearCountries = this.clearCountries.bind(this); 
     }
 
     componentDidMount() { //Runs after the component has been mounted
+        // Fetch all the countries:
         fetch(`${process.env.REACT_APP_API_LOC}/who-countries`).then((res) => {
             if (res.ok) {
-                console.log(res);
                 return res.json();
             }
         }).then(data => {
-            console.log(data);
             this.setState(state => ({
                 Countries: data.countries
             }));
@@ -103,29 +141,32 @@ class Compare extends Component {
     }
 
     listClick(arg) {
-        console.log(`List click: ${arg}`);
-        fetch(`${process.env.REACT_APP_API_LOC}/worldwide?country=${arg}`).then((res) => {
-            if (res.ok) {
-                console.log(res);
-                return res.json();
-            }
-        }).then(data => {
-            console.log(data);
-            let previouslySelectedCountries = this.state.SelectedCountries;
-            previouslySelectedCountries.push(data.home_data);
-            this.setState(state => ({
-                SelectedCountries: previouslySelectedCountries
-            }));
-
-            console.log(`Selected Countries: ${this.state.SelectedCountries}`);
-            console.log(this.state.SelectedCountries);
-        });    
+        // This is to set a maximum amount of countries for comparison as too many will mess up the graphs.
+        if (this.state.SelectedCountries.length === 4) {
+            console.log('Selected too many countries');
+        } else {    
+            console.log(`List click: ${arg}`);
+            fetch(`${process.env.REACT_APP_API_LOC}/worldwide?country=${arg}`).then((res) => {
+                if (res.ok) {
+                    console.log(res);
+                    return res.json();
+                }
+            }).then(data => {
+                let previouslySelectedCountries = this.state.SelectedCountries;
+                previouslySelectedCountries.push(data.home_data);
+                this.setState(state => ({
+                    SelectedCountries: previouslySelectedCountries
+                }));
+            }); 
+        }
     }
 
-    shortenCountryWords(arg) {
-        
+    // This is a button handler to clear all the selected countries:
+    clearCountries() {
+        this.setState(state => ({
+            SelectedCountries: []
+        }));
     }
-
 
 
     render() {
@@ -136,6 +177,7 @@ class Compare extends Component {
                     <Card className='scrollable' style={{ width: '14rem', height: '50rem', backgroundColor:  '#202B33', color: 'white', borderColor: '#A7FFF4' }}>
                         <ListGroup  variant="flush">
                             {
+                                // Display all the countries that the user can select:
                                 this.state.Countries.map((x) => {
                                     return <ListGroup.Item style={{ backgroundColor:  '#202B33', color: 'white', borderColor: '#A7FFF4'}} onClick={() => this.listClick(x)}>{x}</ListGroup.Item>
                                 })
@@ -146,11 +188,11 @@ class Compare extends Component {
                     </Col>
                     <Col xs={10}>
                         <Container>
-
-                        <Card style={{ width: '60rem', marginBottom: '20px' }}>
+                            <Card className='text-white' style={{ width: '60rem', marginBottom: '20px', backgroundColor:  '#202B33' }}>
                                 <Card.Header as="h5">Key and data</Card.Header>
+                                    <h3>Currently viewing: {this.dataChoice[this.props.retrievalType]}</h3>
                                     <Card.Body>
-                                        <Table striped bordered hover>
+                                        <Table striped bordered hover variant="dark">
                                             <thead>
                                                 <tr>
                                                 <th>Color</th>
@@ -166,18 +208,19 @@ class Compare extends Component {
                                                             <tr>
                                                                 <td style={{backgroundColor: this.colors[index + 10][0], color: 'white'}}>{ index + 1 }</td>
                                                                 <td>{ country.Name }</td>
-                                                                <td>{ country["Cases - cumulative total"] }</td>
-                                                                <td>{ country["Deaths - cumulative total"] }</td>
+                                                                <td>{ country[this.jsonDataChoice.cases[this.props.retrievalType]] }</td>
+                                                                <td>{ country[this.jsonDataChoice.deaths[this.props.retrievalType]] }</td>
                                                             </tr>
                                                         )
                                                     })
                                                 }
                                             </tbody>
                                         </Table>
+                                        <Card.Link onClick={this.clearCountries}>Clear</Card.Link>
                                     </Card.Body>
                             </Card>
 
-                            <Card style={{ width: '60rem' }}>
+                            <Card className='text-white' style={{ width: '60rem', backgroundColor:  '#202B33'  }}>
                                 <Card.Header as="h5"> Cases Comparison</Card.Header>
                                     <Card.Body>
                                         The key with all assosiated colours goes here.
@@ -186,12 +229,13 @@ class Compare extends Component {
                                         <Card.Title>Cases Compared</Card.Title>
                                         {/* domainPadding={{ x : [20, 20] }} */}
                                         <div style={{padding: '20px' }}>
-                                            <VictoryChart padding={{ left: 80, bottom: 40, right: 20 }} domainPadding={{ x: 50, y: 50 }}>
+                                            <VictoryChart theme={this.chartTheme} style={{ grid: { stroke: 'none',parent: { border: '3px solid #ffffff' } } }} padding={{ left: 80, bottom: 40, right: 20 }} domainPadding={{ x: 50, y: 50 }}>
                                                 <VictoryGroup offset={10}
                                                 >
                                                     {
+                                                        // Loops through the selected countries and displays the individual bars:
                                                         this.state.SelectedCountries.map((country, index) => {
-                                                            return <VictoryBar style={{ data: { fill: this.colors[index + 10][0] } }} data={[ { x: country.Name, y: country["Cases - cumulative total"] } ]}/>
+                                                            return <VictoryBar style={{ data: { fill: this.colors[index + 10][0] } }} data={[ { x: country.Name, y: country[this.jsonDataChoice.cases[this.props.retrievalType]]  } ]}/>
                                                         })
                                                     }
 
@@ -201,20 +245,21 @@ class Compare extends Component {
                                 </Card.Body>
                             </Card>
 
-                            <Card style={{ width: '60rem', marginTop: '20px' }}>
+                            <Card className='text-white' style={{ width: '60rem', marginTop: '20px', backgroundColor: '#202B33' }}>
                                 <Card.Header as="h5">Deaths Comparison</Card.Header>
                                     <Card.Body>
                                         The key with all assosiated colours goes here.
                                     </Card.Body>
                                     <Card.Body>
                                         <Card.Title>Deaths Compared</Card.Title>
-                                        <VictoryChart padding={{ left: 80, bottom: 40, right: 20 }} domainPadding={{ x: 50 }}>
+                                        <VictoryChart theme={this.chartTheme} style={{ grid: { stroke: 'none',parent: { border: '3px solid #ffffff' } } }} padding={{ left: 80, bottom: 40, right: 20 }} domainPadding={{ x: 50 }}>
                                             <VictoryGroup offset={20}
                                             >
                                                 
                                                 {
+                                                    // Loops through the selected coutnries and displays the individual bars: 
                                                     this.state.SelectedCountries.map((country, index) => {
-                                                        return <VictoryBar style={{ data: { fill: this.colors[index + 10][0] } }} data={[{ x: country.Name, y: country["Deaths - cumulative total"]} ]}/>
+                                                        return <VictoryBar style={{ data: { fill: this.colors[index + 10][0] } }} data={[{ x: country.Name, y: country[this.jsonDataChoice.deaths[this.props.retrievalType]]} ]}/>
                                                     })
                                                 }
 

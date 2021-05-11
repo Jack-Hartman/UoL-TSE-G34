@@ -7,7 +7,6 @@ import Row from 'react-bootstrap/Row';
 
 // Import My Components:
 import DefaultGraphs from '../Components/Parts/DefaultGraphs';
-import Worldwide from '../Components/Parts/WorldWide';
 
 class Default extends Component {
 	constructor(props) {
@@ -17,20 +16,8 @@ class Default extends Component {
         return (
             <Container fluid style={{padding: '5px', backgroundColor: '#293742', alignSelf: 'center'}}>
 				<Row style={{ width: '100%'}}>
-					{/* <Col>
-						<Worldwide />
-						<br />
-						<br />
-						<br />
-					</Col> */}
-					{/* <Col>
-						<Row>
-							<DefaultGraphs data={this.props.data}/>
-						</Row>
-					</Col> */}
-					<DefaultGraphs style={{ alignSelf: 'center' }} data={this.props.data}/>
+					<DefaultGraphs style={{ alignSelf: 'center' }} data={this.props.data} retrievalType={this.props.retrievalType}/>
 				</Row>
-				<Worldwide style={{width: '90%'}} data={this.props.data}/>
 			</Container>
         );
     }

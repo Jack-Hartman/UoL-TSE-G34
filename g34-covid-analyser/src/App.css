@@ -52,3 +52,17 @@ body{
 .t-container {
   background-color: #293742 !important;
 }
+
+.navButton {
+  margin-left: 20px !important;
+  padding: 5px !important;
+}
+
+#dropdown-basic-button {
+  margin-left: 20px !important;
+}
+
+#main-card {
+  margin-left: 20% !important;
+}
+
