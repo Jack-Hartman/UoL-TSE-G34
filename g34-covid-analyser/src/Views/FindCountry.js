@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container'
 import Jumbotron from 'react-bootstrap/Jumbotron';
+import Loading from './Loading';
 
 // Create a view where the user can select the country they're from.
 class FindCountry extends React.Component {
@@ -37,9 +38,9 @@ class FindCountry extends React.Component {
                         <p>Please select the country that you are from:</p>
                     </Jumbotron>
                     {
-                        this.state.Countries.map((x) => {
+                        <>{this.state.Countries.length === 1 ? <center><Loading/></center> :this.state.Countries.map((x) => {
                             return <Button variant="info" style={{ margin: '10px' }} onClick={() => { this.props.action(x) }}>{x}</Button>
-                        })
+                        }) }</>
                     }
                 </Container>
             </div>

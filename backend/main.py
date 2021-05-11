@@ -71,7 +71,6 @@ def who_countries():
 
     for i in data:
         rtn_countries.append(i["Name"])
-        print(i)
 
     my_json = to_json(Countries(rtn_countries))
     return my_json

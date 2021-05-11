@@ -158,7 +158,7 @@ class App extends Component {
 	}
 
 	render () {
-
+		document.title = "Covid Analyser"
 		// This handler tell the application which view to display as this is a single page application:
 		let ui;
 

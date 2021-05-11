@@ -9,6 +9,7 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table'; 
+import Loading from './Loading';
 
 import {
     VictoryChart,
@@ -125,6 +126,7 @@ class Compare extends Component {
 
         // Bind the clear countries button to enable state change from the function.
         this.clearCountries = this.clearCountries.bind(this); 
+        this.RemoveCountry = this.RemoveCountry.bind(this); 
     }
 
     componentDidMount() { //Runs after the component has been mounted
@@ -168,6 +170,29 @@ class Compare extends Component {
         }));
     }
 
+    GetCountryIndex(name){
+        let index = 0;
+        this.state.SelectedCountries.some(function(country){
+            if(country.Name === name){
+                return index;
+            }
+            index++;
+        })
+        return index;
+    }
+
+    RemoveCountry(name) {
+        let index = this.GetCountryIndex(name);
+        if(index > -1){
+            let countries = this.state.SelectedCountries;
+            countries.splice(index, 1);
+            console.log(countries);
+            this.setState(state => ({
+                SelectedCountries: countries
+            }));
+        }
+    }
+
 
     render() {
         return(
@@ -190,7 +215,7 @@ class Compare extends Component {
                         <Container>
                             <Card className='text-white' style={{ width: '60rem', marginBottom: '20px', backgroundColor:  '#202B33' }}>
                                 <Card.Header as="h5">Key and data</Card.Header>
-                                    <h3>Currently viewing: {this.dataChoice[this.props.retrievalType]}</h3>
+                                    <h3 style={{paddingLeft: '20px'}}>Currently viewing: {this.dataChoice[this.props.retrievalType]}</h3>
                                     <Card.Body>
                                         <Table striped bordered hover variant="dark">
                                             <thead>
@@ -199,10 +224,12 @@ class Compare extends Component {
                                                 <th>Country</th>
                                                 <th>Cases</th>
                                                 <th>Deaths</th>
+                                                <th>Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 {
+                                                    <>{this.state.Countries.length === 1 ? <center><Loading/></center> :
                                                     this.state.SelectedCountries.map((country, index) => {
                                                         return (
                                                             <tr>
@@ -210,9 +237,11 @@ class Compare extends Component {
                                                                 <td>{ country.Name }</td>
                                                                 <td>{ country[this.jsonDataChoice.cases[this.props.retrievalType]] }</td>
                                                                 <td>{ country[this.jsonDataChoice.deaths[this.props.retrievalType]] }</td>
+                                                                <td><button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-round btn-icon" onClick={() => this.RemoveCountry(country.Name)} title="Delete">
+                                                                Remove</button></td>
                                                             </tr>
                                                         )
-                                                    })
+                                                    })}</>
                                                 }
                                             </tbody>
                                         </Table>
