@@ -10,6 +10,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table'; 
 import Loading from './Loading';
+import '../Styles/Loading.css';
 
 import {
     VictoryChart,
@@ -203,9 +204,26 @@ class Compare extends Component {
                         <ListGroup  variant="flush">
                             {
                                 // Display all the countries that the user can select:
+                                <>{this.state.Countries.length === 1 ? <div class="loader-inner">
+                                                    <div class="loader-line-wrap">
+                                                    <div class="loader-line"></div>
+                                                    </div>
+                                                    <div class="loader-line-wrap">
+                                                    <div class="loader-line"></div>
+                                                    </div>
+                                                    <div class="loader-line-wrap">
+                                                    <div class="loader-line"></div>
+                                                    </div>
+                                                    <div class="loader-line-wrap">
+                                                    <div class="loader-line"></div>
+                                                    </div>
+                                                    <div class="loader-line-wrap">
+                                                    <div class="loader-line"></div>
+                                                    </div>
+                                                </div>:
                                 this.state.Countries.map((x) => {
                                     return <ListGroup.Item style={{ backgroundColor:  '#202B33', color: 'white', borderColor: '#A7FFF4'}} onClick={() => this.listClick(x)}>{x}</ListGroup.Item>
-                                })
+                                })}</>
                             }
                         </ListGroup>
                         
@@ -229,7 +247,6 @@ class Compare extends Component {
                                             </thead>
                                             <tbody>
                                                 {
-                                                    <>{this.state.Countries.length === 1 ? <center><Loading/></center> :
                                                     this.state.SelectedCountries.map((country, index) => {
                                                         return (
                                                             <tr>
@@ -241,7 +258,7 @@ class Compare extends Component {
                                                                 Remove</button></td>
                                                             </tr>
                                                         )
-                                                    })}</>
+                                                    })
                                                 }
                                             </tbody>
                                         </Table>
