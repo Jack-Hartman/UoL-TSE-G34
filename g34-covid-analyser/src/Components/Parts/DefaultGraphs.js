@@ -10,6 +10,9 @@ import Jumbotron from 'react-bootstrap/Jumbotron';
 // Import victory charts:
 import { VictoryPie } from 'victory';
 
+// Import my components:
+import CustomLabel from './CustomLabel';
+
 // For all of the chart colors.
 const colors = [
     [ '#388087', '#6fb3b8' ],
@@ -216,7 +219,7 @@ const DefaultGraphs = (props) => {
                                             <VictoryPie 
                                                 animate={{ easing: 'exp', duration: 1000 }} 
                                                 data={[
-                                                    { x: 'Deaths', y: x["Deaths - cumulative total"]},
+                                                    { x: 'Deaths', y: x[jsonDataChoice.deaths[props.retrievalType]]},
                                                     { x: 'Cases', y: x[jsonDataChoice.cases[props.retrievalType]] }
                                                 ]} 
                                                 width={250} 
@@ -230,6 +233,7 @@ const DefaultGraphs = (props) => {
                                                 colorScale={colors[x1]} 
                                                 innerRadius={50} 
                                                 theme={chartTheme}
+                                                labelComponent={<CustomLabel />}
                                             />
                                                 
                                             </Card.Body>
