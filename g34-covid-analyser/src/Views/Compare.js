@@ -103,6 +103,30 @@ class Compare extends Component {
             }
         }
 
+        this.dataChoice = [
+            'Cumulative total', 
+            'Cumulative total per 100000 population', 
+            'Newly reported in last 24 hours', 
+            'Newly repoted in last 7 days'
+        ];
+
+        this.jsonDataChoice = {
+            cases: [
+                'Cases - cumulative total',
+                'Cases - cumulative total per 100000 population',
+                'Cases - newly reported in last 24 hours',
+                'Cases - newly reported in last 7 days',
+                'Cases - newly reported in last 7 days per 100000 population'
+            ],
+            deaths: [
+                'Deaths - cumulative total',
+                'Deaths - cumulative total per 100000 population',
+                'Deaths - newly reported in last 24 hours',
+                'Deaths - newly reported in last 7 days',
+                'Deaths - newly reported in last 7 days per 100000 population'
+            ]
+        }
+
         this.clearCountries = this.clearCountries.bind(this); 
     }
 
@@ -173,9 +197,9 @@ class Compare extends Component {
                     </Col>
                     <Col xs={10}>
                         <Container>
-
-                        <Card className='text-white' style={{ width: '60rem', marginBottom: '20px', backgroundColor:  '#202B33' }}>
+                            <Card className='text-white' style={{ width: '60rem', marginBottom: '20px', backgroundColor:  '#202B33' }}>
                                 <Card.Header as="h5">Key and data</Card.Header>
+                                    <h3>Currently viewing: {this.dataChoice[this.props.retrievalType]}</h3>
                                     <Card.Body>
                                         <Table striped bordered hover variant="dark">
                                             <thead>
@@ -193,8 +217,8 @@ class Compare extends Component {
                                                             <tr>
                                                                 <td style={{backgroundColor: this.colors[index + 10][0], color: 'white'}}>{ index + 1 }</td>
                                                                 <td>{ country.Name }</td>
-                                                                <td>{ country["Cases - cumulative total"] }</td>
-                                                                <td>{ country["Deaths - cumulative total"] }</td>
+                                                                <td>{ country[this.jsonDataChoice.cases[this.props.retrievalType]] }</td>
+                                                                <td>{ country[this.jsonDataChoice.deaths[this.props.retrievalType]] }</td>
                                                             </tr>
                                                         )
                                                     })
@@ -219,7 +243,7 @@ class Compare extends Component {
                                                 >
                                                     {
                                                         this.state.SelectedCountries.map((country, index) => {
-                                                            return <VictoryBar style={{ data: { fill: this.colors[index + 10][0] } }} data={[ { x: country.Name, y: country["Cases - cumulative total"] } ]}/>
+                                                            return <VictoryBar style={{ data: { fill: this.colors[index + 10][0] } }} data={[ { x: country.Name, y: country[this.jsonDataChoice.cases[this.props.retrievalType]]  } ]}/>
                                                         })
                                                     }
 
@@ -242,7 +266,7 @@ class Compare extends Component {
                                                 
                                                 {
                                                     this.state.SelectedCountries.map((country, index) => {
-                                                        return <VictoryBar style={{ data: { fill: this.colors[index + 10][0] } }} data={[{ x: country.Name, y: country["Deaths - cumulative total"]} ]}/>
+                                                        return <VictoryBar style={{ data: { fill: this.colors[index + 10][0] } }} data={[{ x: country.Name, y: country[this.jsonDataChoice.deaths[this.props.retrievalType]]} ]}/>
                                                     })
                                                 }
 

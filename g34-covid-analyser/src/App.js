@@ -161,7 +161,7 @@ class App extends Component {
 		} else if (this.state.View === 'findCountry') {
 			ui = <FindCountry action={this.handler}  urls={this.fetchURLS} production={this.isProduction}/>
 		} else if (this.state.View === 'compare') {
-			ui = <Compare  urls={this.fetchURLS} production={this.isProduction}/>
+			ui = <Compare  urls={this.fetchURLS} production={this.isProduction} retrievalType={this.state.RetrievalType}/>
 		}
 
 		return (
