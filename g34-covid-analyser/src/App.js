@@ -115,9 +115,16 @@ class App extends Component {
 	}
 
 	handleHomeClick() {
-		this.setState(state => ({
-			View: 'default'
-		}));
+		if(this.state.Home != 'null'){
+			this.setState(state => ({
+				View: 'default'
+			}));
+		}
+		else{
+			this.setState(state => ({
+				View: 'findCountry'
+			}));
+		}
 	}
 
 	cumulativeTotalClick() {
