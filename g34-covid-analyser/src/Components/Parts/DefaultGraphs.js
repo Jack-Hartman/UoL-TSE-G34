@@ -170,8 +170,8 @@ const DefaultGraphs = (props) => {
                                     <VictoryPie 
                                         animate={{ easing: 'exp', duration: 1000 }} 
                                         data={[
-                                            { x: 'Deaths', y: props.data.home_data[jsonDataChoice.deaths[props.retrievalType]]},
-                                            { x: 'Cases', y: props.data.home_data[jsonDataChoice.cases[props.retrievalType]] }
+                                            { x: 'Deaths', y: props.data.global_data[jsonDataChoice.deaths[props.retrievalType]]},
+                                            { x: 'Cases', y: props.data.global_data[jsonDataChoice.cases[props.retrievalType]] }
                                         ]} 
                                         width={250} 
                                         height={250}
@@ -188,8 +188,8 @@ const DefaultGraphs = (props) => {
                                 </div>
                                 <Card style={{ backgroundColor: '#193038'}}>
                                     <Card.Body>
-                                        <h6 color='#388087'>Deaths: {props.data.home_data[jsonDataChoice.deaths[props.retrievalType]]}</h6>
-                                        <h6 color='#6fb3b8'>Cases: {props.data.home_data[jsonDataChoice.cases[props.retrievalType]]}</h6>
+                                        <h6 color='#388087'>Deaths: {props.data.global_data[jsonDataChoice.deaths[props.retrievalType]]}</h6>
+                                        <h6 color='#6fb3b8'>Cases: {props.data.global_data[jsonDataChoice.cases[props.retrievalType]]}</h6>
                                     </Card.Body>
                                 </Card>
                             </Col>
