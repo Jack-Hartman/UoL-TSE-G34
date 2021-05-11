@@ -9,6 +9,7 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table'; 
+import Loading from './Loading';
 
 import {
     VictoryChart,
@@ -228,6 +229,7 @@ class Compare extends Component {
                                             </thead>
                                             <tbody>
                                                 {
+                                                    <>{this.state.Countries.length === 1 ? <center><Loading/></center> :
                                                     this.state.SelectedCountries.map((country, index) => {
                                                         return (
                                                             <tr>
@@ -239,7 +241,7 @@ class Compare extends Component {
                                                                 Remove</button></td>
                                                             </tr>
                                                         )
-                                                    })
+                                                    })}</>
                                                 }
                                             </tbody>
                                         </Table>
