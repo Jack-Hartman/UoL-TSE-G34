@@ -12,11 +12,11 @@ function About() {
         <Container>
             <Jumbotron>
                 <h1>Welcome to G34 Covid Analyser</h1>
-                <h3>Max Pittock</h3>
-                <h3>Galani Anagnostopoulou</h3>
-                <h3>Jack Hartman</h3>
-                <h3>Joeseph Murphy</h3>
-                <h3>Thomas Houghton</h3>
+                <h3>Max Pittock (19700422)</h3>
+                <h3>Galani Anagnostopoulou (06061790)</h3>
+                <h3>Jack Hartman (19702197)</h3>
+                <h3>Joseph Murphy (19700614)</h3>
+                <h3>Thomas Houghton (19697363)</h3>
             </Jumbotron>
             
         </Container>
