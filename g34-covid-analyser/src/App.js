@@ -182,7 +182,6 @@ class App extends Component {
 							<Dropdown.Item onClick={this.reportedInPastWeekPerPop}>Newly Reported in last 7 days per 100000 population</Dropdown.Item>
 							<Dropdown.Item onClick={this.cumulativeTotalClick}>Cumulative total</Dropdown.Item>
 							<Dropdown.Item onClick={this.cumulativeTotalPerPop}>Cumulative total per 100000 population</Dropdown.Item>
-							<Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
 						</DropdownButton>
 					</Nav>
 				</Navbar>
