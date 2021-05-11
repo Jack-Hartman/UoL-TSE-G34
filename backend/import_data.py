@@ -46,11 +46,9 @@ class WHO_Data_Set:
 		index = 0
 		for i in self.country_list:
 			if input == i:
-				print('yay')
 				return index
 			else:
 				index += 1
-				print('nay')
 
 	def find_countries_within_region(self, data, region):
 		rtn_data = []

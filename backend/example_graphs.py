@@ -12,7 +12,6 @@ def Test_Graph():
 	#Select specfic row for use in analysis
 	Data = import_data.dt["Deaths - cumulative total per 100000 population"]
 	Name =  import_data.dt["Name"]
-	print(Name)
 	X = input().lower()
 	#Y = input()
 	# Plot countries
@@ -45,8 +44,7 @@ def Infection_Rate_Country():
 
 	print("below is test")
 	Out = Name.to_json()
-	
-	print(Out)
+
 	
 
 class Data_To_JSON: #Passes data as a json
