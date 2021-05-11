@@ -167,14 +167,9 @@ class App extends Component {
 		return (
 			<>
 				<Navbar style={{ backgroundColor: '#30404D' }} className='text-white'>
-					<Navbar.Brand onClick={this.handleHomeClick}>{() => {
-						if (this.state.Home === 'null') {
-							return 'G34 Covid Analyser'
-						} else {
-							return this.state.Home
-						}
-					}}</Navbar.Brand>
+					<Navbar.Brand style={{ color: '#ffffff' }}>G34 Covid Analyser</Navbar.Brand>
 					<Nav className="mr-auto">
+						<Button className="navButton" style={{ paddingRight: '5px'}} variant="primary" onClick={this.handleHomeClick}>Home</Button>
 						<Button className="navButton" style={{ paddingRight: '5px' }} variant="primary" onClick={this.handleCompareClick}>Compare</Button>
 						<Button className="navButton" style={{ paddingRight: '5px' }} variant="info" onClick={this.handleAboutClick}>About</Button>
 						<Button className="navButton" style={{ paddingRight: '5px' }} variant="info" onClick={this.handleSetHomeClick}>Set Home Country</Button>
