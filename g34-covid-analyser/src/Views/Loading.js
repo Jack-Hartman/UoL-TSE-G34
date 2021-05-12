@@ -2,7 +2,7 @@
 import '../Styles/Loading.css';
 
 // Import React.
-import React, { Componeent } from 'react';
+import React from 'react';
 
 const Loading = () => {
 

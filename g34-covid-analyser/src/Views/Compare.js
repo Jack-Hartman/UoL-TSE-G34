@@ -7,7 +7,6 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
-import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table'; 
 import '../Styles/Loading.css';
 
@@ -146,7 +145,7 @@ class Compare extends Component {
         // This is to set a maximum amount of countries for comparison as too many will mess up the graphs.
         if (this.state.SelectedCountries.length === 4) {
             console.log('Selected too many countries');
-        } else {    
+        } else if(this.GetCountryIndex(arg) === -1) {    
             console.log(`List click: ${arg}`);
             fetch(`${process.env.REACT_APP_API_LOC}/worldwide?country=${arg}`).then((res) => {
                 if (res.ok) {
@@ -171,13 +170,9 @@ class Compare extends Component {
     }
 
     GetCountryIndex(name){
-        let index = 0;
-        this.state.SelectedCountries.some(function(country){
-            if(country.Name === name){
-                return index;
-            }
-            index++;
-        })
+        let index = this.state.SelectedCountries.findIndex(country => {
+            return country.Name === name
+        });
         return index;
     }
 
@@ -186,7 +181,6 @@ class Compare extends Component {
         if(index > -1){
             let countries = this.state.SelectedCountries;
             countries.splice(index, 1);
-            console.log(countries);
             this.setState(state => ({
                 SelectedCountries: countries
             }));
@@ -221,7 +215,7 @@ class Compare extends Component {
                                                     </div>
                                                 </div>:
                                 this.state.Countries.map((x) => {
-                                    return <ListGroup.Item style={{ backgroundColor:  '#202B33', color: 'white', borderColor: '#A7FFF4'}} onClick={() => this.listClick(x)}>{x}</ListGroup.Item>
+                                    return <ListGroup.Item style={{ backgroundColor:  '#202B33', color: 'white', borderColor: '#A7FFF4', cursor: 'pointer'}} onClick={() => this.listClick(x)}>{x}</ListGroup.Item>
                                 })}</>
                             }
                         </ListGroup>

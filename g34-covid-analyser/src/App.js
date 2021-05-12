@@ -115,7 +115,7 @@ class App extends Component {
 	}
 
 	handleHomeClick() {
-		if(this.state.Home != 'null'){
+		if(this.state.Home !== 'null'){
 			this.setState(state => ({
 				View: 'default'
 			}));
