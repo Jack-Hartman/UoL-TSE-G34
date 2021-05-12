@@ -9,9 +9,6 @@ import Row from 'react-bootstrap/Row';
 import DefaultGraphs from '../Components/Parts/DefaultGraphs';
 
 class Default extends Component {
-	constructor(props) {
-		super (props);
-	}
     render() {
         return (
             <Container fluid style={{padding: '5px', backgroundColor: '#293742', alignSelf: 'center'}}>
